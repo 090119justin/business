@@ -1,5 +1,7 @@
 <?php 
 include "db_conn.php";
+require_once('class.smtp.php');
+require_once('class.phpmailer.php');
 
 $firstName = "";
 $lastName = "";

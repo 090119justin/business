@@ -1,6 +1,74 @@
-<?php 
+<?php
+
+require 'PHPMailer/src/Exception.php';
+require 'PHPMailer/src/PHPMailer.php';
+require 'PHPMailer/src/SMTP.php';
+
+use PHPMailer\PHPMailer\PHPMailer; 
+use PHPMailer\PHPMailer\Exception;
+use PHPMailer\PHPMailer\SMTP;
+
+
 session_start();
 include "db_conn.php";
+
+
+
+
+//Create an instance; passing `true` enables exceptions
+$mail = new PHPMailer(true);
+
+$mail->SMTPDebug = SMTP::DEBUG_SERVER;
+$mail->isSMTP();                      	// Set mailer to use SMTP 
+$mail->Host = 'smtp.gmail.com';       	// Specify main and backup SMTP servers 
+$mail->SMTPAuth = true;               	// Enable SMTP authentication 
+$mail->Username = 'obpps1@gmail.com';   // SMTP username 
+$mail->Password = 'obpps12345';   		// SMTP password 
+$mail->SMTPSecure = 'tls';            	// Enable TLS encryption, `ssl` also accepted 
+$mail->Port = 587; 
+
+// Sender info 
+$mail->setFrom('obpps1@gmail.com', 'OBPPS'); 
+ 
+// Add a recipient 
+$mail->addAddress('jhonmark.delrosario1@gmail.com'); 
+ 
+//$mail->addCC('cc@example.com'); 
+//$mail->addBCC('bcc@example.com'); 
+ 
+// Set email format to HTML 
+$mail->isHTML(true); 
+ 
+// Mail subject 
+$mail->Subject = 'Online Business Permit'; 
+ 
+// Mail body content 
+$bodyContent = '<h1>Hello, Jhon Mark</h1>'; 
+$bodyContent .= '<p>This is to inform you that your submitted requirements has been <b>verified</b></p>'; 
+$bodyContent .= '<a href="http://localhost/business/user/pages-pending-request.php?">http://localhost/business/user/pages-pending-request.php?</a>'; 
+$mail->Body    = $bodyContent; 
+ 
+// Send email 
+if(!$mail->send()) { 
+    echo 'Message could not be sent. Mailer Error: '.$mail->ErrorInfo; 
+} else { 
+    echo 'Message has been sent.'.$mail->ErrorInfo; 
+} 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 if(isset($_POST['verify'])){
@@ -18,9 +86,11 @@ if(isset($_POST['verify'])){
 	$picture = $_POST['picture'];
 	$others = $_POST['others'];
 
+	
+
 
 	if($DTIBus == 'verified' && $BrgyClearance == 'verified' && $zoningClearance == 'verified' && $ceo == 'verified' &&  $bfp == 'verified' && $cho == 'verified' && $contractLease == 'verified' && $sedula == 'verified' && $investedCapital == 'verified' && $picture == 'verified' && $others == 'verified'){
-
+		
 		$sql = "UPDATE requirements set
 			status = 'in progress',
 			DTIBusNameReg = '$DTIBus',
@@ -38,9 +108,12 @@ if(isset($_POST['verify'])){
 			where personId = $person and id = $require;";
 
 		mysqli_query($conn,$sql)or die($conn->error);
+		
 		header("Location: ../administrator/pages-requirements-new.php");
+		
 	}
 	else{
+		$message = 'Your Submitted Requirements has been denied';
 		$sql = "UPDATE requirements set
 			status = 'new',
 			DTIBusNameReg = '$DTIBus',
@@ -264,6 +337,30 @@ if(isset($_POST['retire'])){
 
 	header("Location: ../administrator/pages-applicants-retirement.php");
 
+}
+
+function sendmail($to,$nameto,$subject,$message,$altmess)  {
+
+  $from  = "obpps1@gmail.com";
+  $namefrom = "Online Business Permit Processing System";
+  $mail = new PHPMailer();  
+  $mail->CharSet = 'UTF-8';
+  $mail->isSMTP();   // by SMTP
+  $mail->SMTPAuth   = true;   // user and password
+  $mail->Host       = "localhost";
+  $mail->Port       = 25;
+  $mail->Username   = $from;  
+  $mail->Password   = "obpps12345";
+  $mail->SMTPSecure = "";    // options: 'ssl', 'tls' , ''  
+  $mail->setFrom($from,$namefrom);   // From (origin)
+  $mail->addCC($from,$namefrom);      // There is also addBCC
+  $mail->Subject  = $subject;
+  $mail->AltBody  = $altmess;
+  $mail->Body = $message;
+  $mail->isHTML();   // Set HTML type
+//$mail->addAttachment("attachment");  
+  $mail->addAddress($to, $nameto);
+  return $mail->send();
 }
 
 ?>
