@@ -1,6 +1,53 @@
-<?php 
+<?php
+require 'PHPMailer/src/Exception.php';
+require 'PHPMailer/src/PHPMailer.php';
+require 'PHPMailer/src/SMTP.php';
+
+use PHPMailer\PHPMailer\PHPMailer; 
+use PHPMailer\PHPMailer\Exception;
+use PHPMailer\PHPMailer\SMTP;
+
 session_start();
 include "db_conn.php";
+
+$person = $_POST['person_id'];
+
+
+//Create an instance; passing `true` enables exceptions
+$mail = new PHPMailer(true);
+
+$mail->SMTPDebug = SMTP::DEBUG_SERVER;
+$mail->isSMTP();                      	// Set mailer to use SMTP 
+$mail->Host = 'smtp.gmail.com';       	// Specify main and backup SMTP servers 
+$mail->SMTPAuth = true;               	// Enable SMTP authentication 
+$mail->Username = 'obpps1@gmail.com';   // SMTP username 
+$mail->Password = 'obpps12345';   		// SMTP password 
+$mail->SMTPSecure = 'tls';            	// Enable TLS encryption, `ssl` also accepted 
+$mail->Port = 587; 
+
+// Sender info 
+$mail->setFrom('obpps1@gmail.com', 'OBPPS'); 
+ 
+
+ 
+//$mail->addCC('cc@example.com'); 
+//$mail->addBCC('bcc@example.com'); 
+ 
+// Set email format to HTML 
+$mail->isHTML(true); 
+ 
+// Mail subject 
+$mail->Subject = 'Online Business Permit'; 
+ 
+$sql = $conn->query("SELECT * FROM business.personal_information WHERE id=$person;")or die($conn->error);;
+$result = mysqli_fetch_assoc($sql);
+
+$name = $result['firstName'];
+$emailAddress = $result['email'];
+
+// Add a recipient 
+$mail->addAddress($emailAddress); 
+
 
 
 if(isset($_POST['verify'])){
@@ -38,7 +85,21 @@ if(isset($_POST['verify'])){
 			where personId = $person and id = $require;";
 
 		mysqli_query($conn,$sql)or die($conn->error);
-		header("Location: ../staff/pages-requirements-new.php");
+		$bodyContent = '<h1>Hello, '.$name.'</h1>'; 
+		$bodyContent .= '<p>This is to inform you that your submitted requirements has been <b>verified</b></p>'; 
+		$bodyContent .= '<p>You may now proceed to the business registration form. Please click the link below, Thank you.</p>'; 
+		$bodyContent .= '<a href="http://localhost/business/user/pages-pending-request.php?">http://localhost/business/user/pages-pending-request.php?</a>';
+		$bodyContent .= '<img src=https://i.ibb.co/2gLGS9W/OBPPSlogo.png">';
+
+		
+		$mail->Body    = $bodyContent;
+		if(!$mail->send()) { 
+		    header("Location: ../staff/pages-requirements-new.php?error=failed sending email");
+		} else { 
+			header("Location: ../staff/pages-requirements-new.php");
+		    
+		} 
+		
 	}
 	else{
 		$sql = "UPDATE requirements set
@@ -58,7 +119,18 @@ if(isset($_POST['verify'])){
 			where personId = $person and id = $require;";
 
 		mysqli_query($conn,$sql)or die($conn->error);
-		header("Location: ../staff/pages-requirements-new.php");
+
+		$bodyContent = '<h1>Hello, '.$name.'</h1>';
+		$bodyContent .= '<p>This is to inform you that your submitted requirements are <b>Incomplete</b></p>'; 
+		$bodyContent .= '<p>Please comply with the complete requirements</p>'; 
+		$bodyContent .= '<a href="http://localhost/business/user/pages-pending-request.php?">http://localhost/business/user/pages-pending-request.php?</a>';
+		$bodyContent .= '<img src=https://i.ibb.co/2gLGS9W/OBPPSlogo.png">';
+		$mail->Body    = $bodyContent;
+		if(!$mail->send()) { 
+		    header("Location: ../staff/pages-requirements-new.php");
+		} else { 
+			header("Location: ../staff/pages-requirements-new.php");    
+		} 
 	}
 
 	
@@ -99,7 +171,17 @@ if(isset($_POST['verifyRenew'])){
 			where personId = $person and id = $require;";
 
 		mysqli_query($conn,$sql)or die($conn->error);
-		header("Location: ../staff/pages-requirements-renew.php");
+		$bodyContent = '<h1>Hello, '.$name.'</h1>'; 
+		$bodyContent .= '<p>This is to inform you that your submitted requirements has been <b>verified</b></p>'; 
+		$bodyContent .= '<a href="http://localhost/business/user/pages-pending-request.php?">http://localhost/business/user/pages-pending-request.php?</a>';
+		$bodyContent .= '<img src=https://i.ibb.co/2gLGS9W/OBPPSlogo.png">';
+
+		$mail->Body    = $bodyContent; 
+		if(!$mail->send()) { 
+		    header("Location: ../staff/pages-requirements-renew.php?error=failed sending email");
+		} else { 
+		   	header("Location: ../staff/pages-requirements-renew.php");
+		}
 	}
 	else{
 		$sql = "UPDATE requirements set
@@ -119,7 +201,17 @@ if(isset($_POST['verifyRenew'])){
 			where personId = $person and id = $require;";
 
 		mysqli_query($conn,$sql)or die($conn->error);
-		header("Location: ../staff/pages-requirements-renew.php");
+		$bodyContent = '<h1>Hello, '.$name.'</h1>'; 
+		$bodyContent .= '<p>This is to inform you that your submitted requirements has been <b>verified</b></p>'; 
+		$bodyContent .= '<a href="http://localhost/business/user/pages-pending-request.php?">http://localhost/business/user/pages-pending-request.php?</a>'; 
+		$bodyContent .= '<img src=https://i.ibb.co/2gLGS9W/OBPPSlogo.png">';
+
+		$mail->Body    = $bodyContent; 
+		if(!$mail->send()) { 
+		    header("Location: ../staff/pages-requirements-renew.php?error=failed sending email");
+		} else { 
+		   	header("Location: ../staff/pages-requirements-renew.php");
+		}
 	}
 
 	
@@ -167,8 +259,18 @@ if(isset($_POST['confirm'])){
 		$firesafety, $businessId)";
 
 	mysqli_query($conn,$fees)or die($conn->error);
-	
-	header("Location: ../staff/pages-applicants-new.php");
+	$bodyContent = '<h1>Hello, '.$name.'</h1>'; 
+	$bodyContent .= '<p>This is to inform you that your registration form for your new business has been <b>verified</b></p>'; 
+	$bodyContent .= '<a href="http://localhost/business/user/pages-my-businesses.php?">http://localhost/business/user/pages-pending-request.php?</a>';
+	$bodyContent .= '<img src=https://i.ibb.co/2gLGS9W/OBPPSlogo.png">';
+
+	$mail->Body    = $bodyContent; 
+	if(!$mail->send()) { 
+	    header("Location: ../staff/pages-applicants-new.php?error=failed sending email");
+	} else { 
+	   		header("Location: ../staff/pages-applicants-new.php");
+
+	}
 
 }
 
@@ -214,8 +316,17 @@ if(isset($_POST['renew'])){
 	($mayor,$garbage,$trucks,$sanitary,$building,$electrical,$mechanical,$plumbing,$storage,$others,$firesafety,$businessId)";
 
 	mysqli_query($conn,$fees)or die($conn->error);
+	$bodyContent = '<h1>Hello, '.$name.'</h1>'; 
+	$bodyContent .= '<p>This is to inform you that the renewal form for your business has been <b>verified</b></p>'; 
+	$bodyContent .= '<a href="http://localhost/business/user/pages-my-businesses.php?">http://localhost/business/user/pages-pending-request.php?</a>';
+	$bodyContent .= '<img src=https://i.ibb.co/2gLGS9W/OBPPSlogo.png">';
 
-	header("Location: ../staff/pages-applicants-renew.php");
+	$mail->Body    = $bodyContent; 
+	if(!$mail->send()) { 
+	    header("Location: ../staff/pages-applicants-renew.php?error=failed sending email");
+	} else { 
+	  header("Location: ../staff/pages-applicants-renew.php");
+	}
 }
 
 if (isset($_POST['update_staff'])) {
@@ -260,8 +371,17 @@ if(isset($_POST['retire'])){
 
 	$retire = "UPDATE business.business set status = 'retired' where id = $businessId; ";
 	$result = mysqli_query($conn, $retire)or die($conn->error);
+	$bodyContent = '<h1>Hello, '.$name.'</h1>'; 
+	$bodyContent .= '<p>This is to inform you that the retirement form for your business has been <b>verified</b></p>'; 
+	$bodyContent .= '<a href="http://localhost/business/user/pages-my-businesses.php?">http://localhost/business/user/pages-pending-request.php?</a>';
+	$bodyContent .= '<img src=https://i.ibb.co/2gLGS9W/OBPPSlogo.png">';
 
-	header("Location: ../staff/pages-applicants-retirement.php");
+	$mail->Body = $bodyContent; 
+	if(!$mail->send()) { 
+	 	header("Location: ../staff/pages-applicants-retirement.php");
+	} else { 
+		header("Location: ../staff/pages-applicants-retirement.php");
+	}
 
 }
 
