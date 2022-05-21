@@ -452,15 +452,13 @@
             <div class="card">
               <div class="card-body">
                 <h5 class="card-title">Mission</h5>
-                  Ut in ea error laudantium quas omnis officia. Sit sed praesentium voluptas. Corrupti inventore consequatur nisi necessitatibus modi consequuntur soluta id. Enim autem est esse natus assumenda. Non sunt dignissimos officiis expedita. Consequatur sint repellendus voluptas.
-                  Quidem sit est nulla ullam. Suscipit debitis ullam iusto dolorem animi dolorem numquam. Enim fuga 
+                 The Online Business Permits Processing System of the City Government of Roxas City, Capiz exists to provide quality public service to the city’s process through the online system program which ensures efficient, fast and quality public service toward achieving a business-friendly environment.
               </div>
             </div>
             <div class="card">
               <div class="card-body">
                 <h5 class="card-title">Vision</h5>
-                  Ut in ea error laudantium quas omnis officia. Sit sed praesentium voluptas. Corrupti inventore consequatur nisi necessitatibus modi consequuntur soluta id. Enim autem est esse natus assumenda. Non sunt dignissimos officiis expedita. Consequatur sint repellendus voluptas.
-                  Quidem sit est nulla ullam. Suscipit debitis ullam iusto dolorem animi dolorem numquam. Enim fuga
+                  The Online Business Permits Processing System of Roxas City is the Model OBPPS in the entire roxas through its excellent implementation of the ONLINE system and other innovative programs that facilitate the conduct of legitimate private enterprise as a strategic means to enhance the city’s competitiveness as an investment destination.
               </div>
             </div><!-- End Default Card -->
             
@@ -912,15 +910,13 @@
             <div class="card">
               <div class="card-body">
                 <h5 class="card-title">Mission</h5>
-                  Ut in ea error laudantium quas omnis officia. Sit sed praesentium voluptas. Corrupti inventore consequatur nisi necessitatibus modi consequuntur soluta id. Enim autem est esse natus assumenda. Non sunt dignissimos officiis expedita. Consequatur sint repellendus voluptas.
-                  Quidem sit est nulla ullam. Suscipit debitis ullam iusto dolorem animi dolorem numquam. Enim fuga 
+                 The Online Business Permits Processing System of the City Government of Roxas City, Capiz exists to provide quality public service to the city’s process through the online system program which ensures efficient, fast and quality public service toward achieving a business-friendly environment.
               </div>
             </div>
             <div class="card">
               <div class="card-body">
                 <h5 class="card-title">Vision</h5>
-                  Ut in ea error laudantium quas omnis officia. Sit sed praesentium voluptas. Corrupti inventore consequatur nisi necessitatibus modi consequuntur soluta id. Enim autem est esse natus assumenda. Non sunt dignissimos officiis expedita. Consequatur sint repellendus voluptas.
-                  Quidem sit est nulla ullam. Suscipit debitis ullam iusto dolorem animi dolorem numquam. Enim fuga
+                 The Online Business Permits Processing System of Roxas City is the Model OBPPS in the entire roxas through its excellent implementation of the ONLINE system and other innovative programs that facilitate the conduct of legitimate private enterprise as a strategic means to enhance the city’s competitiveness as an investment destination.
               </div>
             </div><!-- End Default Card -->
             

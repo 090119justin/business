@@ -10,10 +10,6 @@ use PHPMailer\PHPMailer\SMTP;
 session_start();
 include "db_conn.php";
 
-$person = $_POST['person_id'];
-
-
-//Create an instance; passing `true` enables exceptions
 $mail = new PHPMailer(true);
 
 $mail->SMTPDebug = SMTP::DEBUG_SERVER;
@@ -28,26 +24,31 @@ $mail->Port = 587;
 // Sender info 
 $mail->setFrom('obpps1@gmail.com', 'OBPPS'); 
  
-
- 
-//$mail->addCC('cc@example.com'); 
-//$mail->addBCC('bcc@example.com'); 
  
 // Set email format to HTML 
 $mail->isHTML(true); 
  
 // Mail subject 
 $mail->Subject = 'Online Business Permit'; 
- 
-$sql = $conn->query("SELECT * FROM business.personal_information WHERE id=$person;")or die($conn->error);;
-$result = mysqli_fetch_assoc($sql);
 
-$name = $result['firstName'];
-$emailAddress = $result['email'];
+if(isset($_POST['person_id'])){
+	$person = $_POST['person_id'];
+	$sql = $conn->query("SELECT * FROM business.personal_information WHERE id=$person;")or die($conn->error);
+	$result = mysqli_fetch_assoc($sql);
 
-// Add a recipient 
-$mail->addAddress($emailAddress); 
+	$req = $conn->query("SELECT concat('#',lpad(id,8,'0')) as newId FROM business.requirements WHERE personId=$person order by id desc;")or die($conn->error);
+	$reqResult = mysqli_fetch_assoc($req);
 
+	$name = $result['firstName'];
+	$emailAddress = $result['email'];
+	$requirementsId = $reqResult['newId'];
+
+	$mail->addAddress($emailAddress);
+
+
+}
+
+$obbpsLogo = '<img src=https://i.ibb.co/2gLGS9W/OBPPSlogo.png" width="300">';
 
 
 if(isset($_POST['verify'])){
@@ -68,6 +69,22 @@ if(isset($_POST['verify'])){
 
 	if($DTIBus == 'verified' && $BrgyClearance == 'verified' && $zoningClearance == 'verified' && $ceo == 'verified' &&  $bfp == 'verified' && $cho == 'verified' && $contractLease == 'verified' && $sedula == 'verified' && $investedCapital == 'verified' && $picture == 'verified' && $others == 'verified'){
 
+		$bodyContent = '<h2>Hello, '.$name.'</h2>';
+		$bodyContent = '<p>Good Day!</p>';
+		$bodyContent .= '<p>This email is to inform you that your submitted requirements has been <b>verified</b></p>';
+		$bodyContent .= '<p>You may now proceed to the business registration form. Please click the link below, Thank you.</p>';
+		$bodyContent .= '<a href="http://localhost/business/user/pages-pending-request.php?">OBPPS.com</a>';
+		$bodyContent .= '<h4>Your Request No.: <b>'.$requirementsId.'</b></h4><br>';
+		$bodyContent .= '<p>If you have any questions, please, reach out to us at <a  href="mailto:obpps1@gmail.com" >obpps1@gmail.com</a>, OBPPSROXAS</p>';
+		$bodyContent .= '<p>Sincerely,</p>';
+		$bodyContent .= '<p><b>OBPPS City Hall</b> (Roxas City, Capiz)</p>';
+		$bodyContent .= '<p><b>**This is an auto generated email. PLEASE DO NOT REPLY TO THIS MESSAGE**</b></p>';
+		$bodyContent .= $obbpsLogo;
+		
+		
+		$mail->Body    = $bodyContent; 
+		
+
 		$sql = "UPDATE requirements set
 			status = 'in progress',
 			DTIBusNameReg = '$DTIBus',
@@ -85,14 +102,7 @@ if(isset($_POST['verify'])){
 			where personId = $person and id = $require;";
 
 		mysqli_query($conn,$sql)or die($conn->error);
-		$bodyContent = '<h1>Hello, '.$name.'</h1>'; 
-		$bodyContent .= '<p>This is to inform you that your submitted requirements has been <b>verified</b></p>'; 
-		$bodyContent .= '<p>You may now proceed to the business registration form. Please click the link below, Thank you.</p>'; 
-		$bodyContent .= '<a href="http://localhost/business/user/pages-pending-request.php?">http://localhost/business/user/pages-pending-request.php?</a>';
-		$bodyContent .= '<img src=https://i.ibb.co/2gLGS9W/OBPPSlogo.png">';
-
 		
-		$mail->Body    = $bodyContent;
 		if(!$mail->send()) { 
 		    header("Location: ../staff/pages-requirements-new.php?error=failed sending email");
 		} else { 
@@ -102,6 +112,19 @@ if(isset($_POST['verify'])){
 		
 	}
 	else{
+		$bodyContent = '<h2>Hello, '.$name.'</h2>';
+		$bodyContent .= '<p>This is to inform you that your submitted requirements are <b>Incomplete</b></p>'; 
+		$bodyContent .= '<p>Please comply with the complete requirements</p>';
+		$bodyContent .= '<a href="http://localhost/business/user/pages-pending-request.php?">OBPPS.com</a>';
+		$bodyContent .= '<h4>Your Request No.: <b>'.$requirementsId.'</b></h4>';
+		$bodyContent .= '<p>If you have any questions, please, reach out to us at <a  href="mailto:obpps1@gmail.com" >obpps1@gmail.com</a>, OBPPSROXAS</p>';
+		$bodyContent .= '<p>Sincerely,</p>';
+		$bodyContent .= '<p><b>OBPPS City Hall</b> (Roxas City, Capiz)</p>';
+		$bodyContent .= '<p><b>**This is an auto generated email. PLEASE DO NOT REPLY TO THIS MESSAGE**</b></p>';
+		$bodyContent .= $obbpsLogo;
+		
+		$mail->Body    = $bodyContent;
+
 		$sql = "UPDATE requirements set
 			status = 'new',
 			DTIBusNameReg = '$DTIBus',
@@ -120,12 +143,6 @@ if(isset($_POST['verify'])){
 
 		mysqli_query($conn,$sql)or die($conn->error);
 
-		$bodyContent = '<h1>Hello, '.$name.'</h1>';
-		$bodyContent .= '<p>This is to inform you that your submitted requirements are <b>Incomplete</b></p>'; 
-		$bodyContent .= '<p>Please comply with the complete requirements</p>'; 
-		$bodyContent .= '<a href="http://localhost/business/user/pages-pending-request.php?">http://localhost/business/user/pages-pending-request.php?</a>';
-		$bodyContent .= '<img src=https://i.ibb.co/2gLGS9W/OBPPSlogo.png">';
-		$mail->Body    = $bodyContent;
 		if(!$mail->send()) { 
 		    header("Location: ../staff/pages-requirements-new.php");
 		} else { 
@@ -174,7 +191,7 @@ if(isset($_POST['verifyRenew'])){
 		$bodyContent = '<h1>Hello, '.$name.'</h1>'; 
 		$bodyContent .= '<p>This is to inform you that your submitted requirements has been <b>verified</b></p>'; 
 		$bodyContent .= '<a href="http://localhost/business/user/pages-pending-request.php?">http://localhost/business/user/pages-pending-request.php?</a>';
-		$bodyContent .= '<img src=https://i.ibb.co/2gLGS9W/OBPPSlogo.png">';
+		$bodyContent .= $obbpsLogo;
 
 		$mail->Body    = $bodyContent; 
 		if(!$mail->send()) { 
@@ -203,9 +220,14 @@ if(isset($_POST['verifyRenew'])){
 		mysqli_query($conn,$sql)or die($conn->error);
 		$bodyContent = '<h1>Hello, '.$name.'</h1>'; 
 		$bodyContent .= '<p>This is to inform you that your submitted requirements has been <b>verified</b></p>'; 
-		$bodyContent .= '<a href="http://localhost/business/user/pages-pending-request.php?">http://localhost/business/user/pages-pending-request.php?</a>'; 
-		$bodyContent .= '<img src=https://i.ibb.co/2gLGS9W/OBPPSlogo.png">';
-
+		$bodyContent .= '<a href="http://localhost/business/user/pages-pending-request.php?">OBPPS.com</a>';
+		$bodyContent .= '<h4>Your Request No.: <b>'.$requirementsId.'</b></h4><br>';
+		$bodyContent .= '<p>If you have any questions, please, reach out to us at <a  href="mailto:obpps1@gmail.com" >obpps1@gmail.com</a>, OBPPSROXAS</p>';
+		$bodyContent .= '<p>Sincerely,</p>';
+		$bodyContent .= '<p><b>OBPPS City Hall</b> (Roxas City, Capiz)</p>';
+		$bodyContent .= '<p><b>**This is an auto generated email. PLEASE DO NOT REPLY TO THIS MESSAGE**</b></p>';
+		$bodyContent .= $obbpsLogo;
+		
 		$mail->Body    = $bodyContent; 
 		if(!$mail->send()) { 
 		    header("Location: ../staff/pages-requirements-renew.php?error=failed sending email");
@@ -228,7 +250,8 @@ if(isset($_POST['confirm'])){
 	$EnvironmentCertificate = $_POST['EnvironmentCertificate'];
 	$MarketClearance = $_POST['MarketClearance'];
 	$businessId = $_POST['businessId'];
-
+	$formatBusinessId = str_pad($businessId, 8, '0', STR_PAD_LEFT);
+	
 	$sql = "INSERT INTO business.document_verification
 	(BrgyClearance,ZoningClearance,OccupancyPermit,AnnualInspection,SanitaryPermit,FireCertificate,EnvironmentCertificate,MarketClearance,businessId)values(
 	'$BrgyClearance','$ZoningClearance','$OccupancyPermit','$AnnualInspection','$SanitaryPermit','$FireCertificate','$EnvironmentCertificate','$MarketClearance',$businessId);";
@@ -259,12 +282,32 @@ if(isset($_POST['confirm'])){
 		$firesafety, $businessId)";
 
 	mysqli_query($conn,$fees)or die($conn->error);
-	$bodyContent = '<h1>Hello, '.$name.'</h1>'; 
-	$bodyContent .= '<p>This is to inform you that your registration form for your new business has been <b>verified</b></p>'; 
-	$bodyContent .= '<a href="http://localhost/business/user/pages-my-businesses.php?">http://localhost/business/user/pages-pending-request.php?</a>';
-	$bodyContent .= '<img src=https://i.ibb.co/2gLGS9W/OBPPSlogo.png">';
 
-	$mail->Body    = $bodyContent; 
+	$sql = $conn->query("SELECT *
+		FROM personal_information
+		left join owner on personal_information.id = owner.infoId
+		left join business on owner.id = business.ownerId
+		where business.id= $businessId;")or die($conn->error);
+	$result = mysqli_fetch_assoc($sql);
+
+	$name = $result['firstName'];
+	$emailAddress = $result['email'];
+	$mail->addAddress($emailAddress);
+
+	$bodyContent = '<h1>Dear, '.$name.'</h1>'; 
+	$bodyContent .= '<p>Good Day!</p>'; 
+	$bodyContent .= '<p><b>Thank you</b>. This email is to confirm that you have successfully registered to OBPPS.</p>';
+	$bodyContent .= '<a href="http://localhost/business/user/pages-pending-request.php?">OBPPS.com</a>';
+	$bodyContent .= '<h4>Your Business ID.: <b>#'.$formatBusinessId.'</b></h4><br>';
+	$bodyContent .= '<p>If you have any questions, please, reach out to us at <a  href="mailto:obpps1@gmail.com" >obpps1@gmail.com</a>, OBPPSROXAS</p>';
+	$bodyContent .= '<p>Sincerely,</p>';
+	$bodyContent .= '<p><b>OBPPS City Hall</b> (Roxas City, Capiz)</p>';
+	$bodyContent .= '<p><b>REMINDER!: please, do not share your account information to avoid conflict involving your account, thank you.</b></p>';
+	$bodyContent .= '<p><b>**This is an auto generated email. PLEASE DO NOT REPLY TO THIS MESSAGE**</b></p>';
+	$bodyContent .= $obbpsLogo;
+
+	$mail->Body    = $bodyContent;
+
 	if(!$mail->send()) { 
 	    header("Location: ../staff/pages-applicants-new.php?error=failed sending email");
 	} else { 
@@ -284,7 +327,8 @@ if(isset($_POST['renew'])){
 	$EnvironmentCertificate = $_POST['EnvironmentCertificate'];
 	$MarketClearance = $_POST['MarketClearance'];
 	$businessId = $_POST['businessId'];
-
+	$formatBusinessId = str_pad($businessId, 8, '0', STR_PAD_LEFT);
+	
 	$sql = "INSERT INTO business.document_verification
 	(BrgyClearance,ZoningClearance,OccupancyPermit,AnnualInspection,SanitaryPermit,FireCertificate,EnvironmentCertificate,MarketClearance,businessId)values(
 	'$BrgyClearance','$ZoningClearance','$OccupancyPermit','$AnnualInspection','$SanitaryPermit','$FireCertificate','$EnvironmentCertificate','$MarketClearance',$businessId);";
@@ -307,21 +351,36 @@ if(isset($_POST['renew'])){
 	$plumbing = $_POST['plumbing'];
 	$storage = $_POST['storage'];
 	$others = $_POST['others'];
-	$total_lgu = $_POST['total_lgu'];
 	$firesafety = $_POST['firesafety'];
-	$total = $_POST['total'];
 
 	$fees = "INSERT INTO business.regulatory_fees
 	(MayorsPermit,GarbageCharges,DeliveryTrucks,SanitaryInspection,BldgInspection,ElectricalInspection,MechanicalInspection,PlumbingInspection,SubstanceStorage,Others,FireSafetyFee,businessId)values
 	($mayor,$garbage,$trucks,$sanitary,$building,$electrical,$mechanical,$plumbing,$storage,$others,$firesafety,$businessId)";
 
 	mysqli_query($conn,$fees)or die($conn->error);
-	$bodyContent = '<h1>Hello, '.$name.'</h1>'; 
-	$bodyContent .= '<p>This is to inform you that the renewal form for your business has been <b>verified</b></p>'; 
-	$bodyContent .= '<a href="http://localhost/business/user/pages-my-businesses.php?">http://localhost/business/user/pages-pending-request.php?</a>';
-	$bodyContent .= '<img src=https://i.ibb.co/2gLGS9W/OBPPSlogo.png">';
+	$sql = $conn->query("SELECT *
+		FROM personal_information
+		left join owner on personal_information.id = owner.infoId
+		left join business on owner.id = business.ownerId
+		where business.id= $businessId;")or die($conn->error);
+	$result = mysqli_fetch_assoc($sql);
 
-	$mail->Body    = $bodyContent; 
+	$name = $result['firstName'];
+	$emailAddress = $result['email'];
+	$mail->addAddress($emailAddress);
+
+	$bodyContent = '<h1>Dear, '.$name.'</h1>'; 
+	$bodyContent .= '<p>This is to inform you that the renewal form for your business has been <b>verified</b>, Thank you and have a nice day!</p>'; 
+	$bodyContent .= '<a href="http://localhost/business/user/pages-pending-request.php?">OBPPS.com</a>';
+	$bodyContent .= '<h4>Your Business ID.: <b>'.$formatBusinessId.'</b></h4><br>';
+	$bodyContent .= '<p>If you have any questions, please, reach out to us at <a  href="mailto:obpps1@gmail.com" >obpps1@gmail.com</a>, OBPPSROXAS</p>';
+	$bodyContent .= '<p>Sincerely,</p>';
+	$bodyContent .= '<p><b>OBPPS City Hall</b> (Roxas City, Capiz)</p>';
+	$bodyContent .= '<p><b>REMINDER!: please, do not share your account information to avoid conflict involving your account, thank you.</b></p>';
+	$bodyContent .= '<p><b>**This is an auto generated email. PLEASE DO NOT REPLY TO THIS MESSAGE**</b></p>';
+	$bodyContent .= $obbpsLogo;
+
+	$mail->Body    = $bodyContent;
 	if(!$mail->send()) { 
 	    header("Location: ../staff/pages-applicants-renew.php?error=failed sending email");
 	} else { 

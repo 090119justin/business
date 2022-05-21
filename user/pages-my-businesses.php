@@ -59,9 +59,11 @@
                             <td scope="row"><?php echo $row['mode'];?></td>
                             <td scope="row"><?php echo $row['status'];?></td>
                             <td scope="row">
-                              <a class="badge bg-primary text-light" href="pages-business-details.php?view_data=<?php echo $row ['businessId']; ?>"><i class="bi bi-eye-fill" ></i> Business </a>
+                              <a class="badge bg-primary text-light" href="pages-business-details.php?view_data=<?php echo $row ['businessId']; ?>">
+                                <i class="bi bi-eye-fill" ></i> Business 
+                              </a>
                               
-                              <a type="button" class="badge bg-success text-light" data-bs-toggle="modal" data-bs-target="#modalDialogScrollable">
+                              <a class="badge bg-success text-light" href="pages-view-payments.php?view_data=<?php echo $row ['businessId']; ?>">
                                 <i class="bi bi-eye-fill" ></i> Payment
                               </a>
                             </td>
