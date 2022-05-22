@@ -6,7 +6,7 @@
       <h1>Verify Requirements</h1>
       <nav>
         <ol class="breadcrumb">
-          <li class="breadcrumb-item active">New Businesses</li>
+          <li class="breadcrumb-item active">Renew Businesses</li>
           <li class="breadcrumb-item">Checklist</li>
 
         </ol>
