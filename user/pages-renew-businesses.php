@@ -25,7 +25,7 @@
               inner join business.owner on business.ownerId = owner.id
               inner join business.personal_information on owner.infoId = personal_information.id
               where mode != 'retired'
-              and status = 'paid'
+              and status = 'fully paid'
               and infoId = $ownerId;") or die($conn->error);
 
 

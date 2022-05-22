@@ -18,11 +18,84 @@
 
         <?php
             $businessId = $_GET['view_data6'];  
-            $result = $conn->query("select business.id as businessId,address.*, business.*
+            
+            $result = $conn->query("select *
+                      from business.regulatory_fees
+                      where businessId = $businessId;") or die($conn->error);
+            $row = mysqli_fetch_assoc($result);
+
+            $businessResult = $conn->query("select *
                 from business.business
-                inner join business.address on business.addressId = address.id
-                where business.id = $businessId;") or die($conn->error);
-             $row = mysqli_fetch_assoc($result);
+                where id = $businessId;") or die($conn->error);
+
+            $businessRow = mysqli_fetch_assoc($businessResult);
+            $businessName = $businessRow["businessName"];
+
+            $pastBusiness = $conn->query("SELECT * FROM `business` WHERE businessName = '$businessName' and id != $businessId
+            ORDER by id DESC
+            LIMIT 1;") or die($conn->error);
+            $pastBusinessRow = mysqli_fetch_assoc($pastBusiness);
+
+
+            $pastPayment = strval($pastBusinessRow["applicationDate"]);
+            $pastPayment = strtotime($pastPayment);
+            $currentDate = strval(date("Y-m-d"));
+            $currentDate = strtotime($currentDate);
+
+            $pastYear = date('Y', $pastPayment);
+            $currentYear = date('Y', $currentDate);
+
+            $pastMonth = date('m', $pastPayment);
+            $currentMonth = date('m', $currentDate);
+
+            $diff = (($currentYear - $pastYear) * 12) + ($currentMonth - $pastMonth);
+
+            $paymentMode = $pastBusinessRow["paymentMode"];
+
+            $penalty = 0;
+            $initialPenalty = 0;
+            $remainingPenalty = 0;
+            if($paymentMode == "Annually"){
+                if($diff > 12){
+                $penalty = $diff - 12;
+                $initialPenalty = 0.06;
+                $remainingPenalty = $penalty - 1;
+                
+                }
+                
+            }
+            else if($paymentMode == "Quarterly"){
+                if($diff > 4 ){
+                $penalty = $diff - 4;
+                $initialPenalty = 0.06;
+                $remainingPenalty = $penalty - 1;
+                }
+                
+            }
+            else if($paymentMode == "Semi-Anually"){
+                if($diff > 6 ){
+                $penalty = $diff - 6;
+                $initialPenalty = 0.06;
+                $remainingPenalty = $penalty - 1;
+                }
+                
+            }
+
+            $total = $row['MayorsPermit'] + $row['GarbageCharges'] + $row['DeliveryTrucks'] + $row['SanitaryInspection'] + $row['BldgInspection'] + $row['ElectricalInspection'] + $row['MechanicalInspection'] + $row['PlumbingInspection'] + $row['SubstanceStorage'] + $row['Others'];
+            
+            
+            $MayorPenalty = ($row['MayorsPermit'] * $initialPenalty) + (($row['MayorsPermit'] * 0.02) * $remainingPenalty);
+            $GarbageChargesPenalty = ($row['GarbageCharges'] * $initialPenalty) + (($row['GarbageCharges'] * 0.02) * $remainingPenalty);
+            $DeliveryTrucksPenalty = ($row['DeliveryTrucks'] * $initialPenalty) + (($row['DeliveryTrucks'] * 0.02) * $remainingPenalty);
+            $SanitaryInspectionPenalty = ($row['SanitaryInspection'] * $initialPenalty) + (($row['SanitaryInspection'] * 0.02) * $remainingPenalty);
+            $BldgInspectionPenalty = ($row['BldgInspection'] * $initialPenalty) + (($row['BldgInspection'] * 0.02) * $remainingPenalty);
+            $ElectricalInspectionPenalty = ($row['ElectricalInspection'] * $initialPenalty) + (($row['ElectricalInspection'] * 0.02) * $remainingPenalty);
+            $MechanicalInspectionPenalty = ($row['MechanicalInspection'] * $initialPenalty) + (($row['MechanicalInspection'] * 0.02) * $remainingPenalty);
+            $PlumbingInspectionPenalty = ($row['PlumbingInspection'] * $initialPenalty) + (($row['PlumbingInspection'] * 0.02) * $remainingPenalty);
+            $SubstanceStoragePenalty = ($row['SubstanceStorage'] * $initialPenalty) + (($row['SubstanceStorage'] * 0.02) * $remainingPenalty);
+            $OthersPenalty = ($row['Others'] * $initialPenalty) + (($row['Others'] * 0.02) * $remainingPenalty);
+
+            $total = $total + $MayorPenalty +  $GarbageChargesPenalty + $DeliveryTrucksPenalty + $SanitaryInspectionPenalty + $BldgInspectionPenalty + $ElectricalInspectionPenalty + $MechanicalInspectionPenalty + $PlumbingInspectionPenalty + $SubstanceStoragePenalty + $OthersPenalty;
           ?>
       <form method="POST" action="php/admin-function-verify.php">
         <input type="hidden" name="businessId" value="<?php echo $_GET['view_data6']?>">
@@ -157,98 +230,106 @@
                   <div class="row">
                     <div class="col-lg-1"></div>
                     <div class="col-lg-11">
-                      <table class="table table-hover">
-                        <thead>
-                          <tr>
-                            <th scope="col">Regulatory Fees</th>
-                            <th scope="col">Amount Due</th>
-                            
-                          </tr>
-                        </thead>
-                        <tbody>
-                          
-                          <tr>
-                            <td>Mayor's Permit</td>
-                            <td>550</td>                   
-                          </tr>
-                          <tr>
-                            <td>Garbage Charges</td>
-                            <td>1,500</td>                   
-                          </tr>
-                          <tr>
-                            <td>Delivery Trucks/Vans Permit Fee</td>
-                            <td>550</td>                   
-                          </tr>
-                          <tr>
-                            <td>Sanitary Inspection Fee</td>
-                            <td>500</td>                                                              
-                          </tr>
-                          <tr>
-                            <td>Building Inspection Fee</td>
-                            <td>550</td>                                                               
-                          </tr>
-                          <tr>
-                            <td>Electrical Inspection Fee</td>
-                            <td>550</td>            
-                          </tr>
-                          <tr>
-                            <td>Mechanical Inspection Fee</td>
-                            <td>550</td>                                                          
-                          </tr>
-                          <tr>
-                            <td>Plumbing Inspection Fee</td>
-                            <td>550</td>                                                             
-                          </tr>
-                          <tr>
-                            <td>Storage and Sale of Combustible/Flamable or Explosive Substance</td>
-                            <td>550</td>                                                               
-                          </tr>
-                          <tr>
-                            <td>Others</td>
-                            <td>0</td>                   
-                          </tr>
-                          <tr>
-                            <th>Total Fees For LGU</th>
-                            <th>5,900</th>                   
-                          </tr> 
-                          <tr>
-                            <th>Fire Safety Inspection Fee (10%)</th>
-                            <th>590</th>                   
-                          </tr>
-                          <tr>
-                            <th>TOTAL</th>
-                            <th>6,490</th>                   
-                          </tr>                      
-                        </tbody>
-                      </table>
-
-                      
-                      <br>
-
-                      <nav aria-label="Page navigation example">
-                        <ul class="pagination justify-content-end">
-                          <li class="page-item">
-                            <a class="page-link" href="pages-business-details-renew-p2.php?view_data2=<?php echo $row['businessId'] ?>" aria-label="Previous">
-                              <span aria-hidden="true">&laquo;</span>
-                            </a>
-                          </li>
-                          <li class="page-item"><a class="page-link" href="pages-business-details-renew.php?view_data=<?php echo $row['businessId'] ?>">1</a></li>
-                          <li class="page-item"><a class="page-link" href="pages-business-details-renew-p2.php?view_data2=<?php echo $row['businessId'] ?>">2</a></li>
-                          <li class="page-item"><a class="page-link" href="pages-business-details-renew-p3.php?view_data3=<?php echo $row['businessId'] ?>">3</a></li>                        
-                          <li class="page-item"><a class="page-link" href="pages-business-details-renew-p4.php?view_data4=<?php echo $row['businessId'] ?>">4</a></li>
-                          <li class="page-item"><a class="page-link" href="pages-business-details-renew-p5.php?view_data5=<?php echo $row['businessId'] ?>">5</a></li>
-                          <li class="page-item active"><a class="page-link" href="#">6</a></li>
-                        </ul>
-                      </nav>
-
-                      
-
-                    </div>
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Local Taxes & Regulatory Fees</th>
+                                    <th scope="col">Amount Due</th>
+                                    <th scope="col">Penalty/Surcharge</th>
+                                    <th scope="col">Total</th>
+                        
+                                </tr>
+                            </thead>
+                            <tbody>
                     
-                    <div class="d-grid gap-2 mt-3">
-                      <a class="btn btn-success" href="pages-dashboard.php">Back to Dashboard</a>
-                    </div>
+                                <tr>
+                                    <td>Mayor's Permit</td>
+                                    <td><?php echo number_format($row['MayorsPermit']);?></td>
+                                    <td><?php echo number_format($MayorPenalty);?></td>                  
+                                    <td><?php echo number_format($MayorPenalty + $row['MayorsPermit']);?></td>              
+                                </tr>
+                                <tr>
+                                    <td>Garbage Charges</td>
+                                    <td><?php echo number_format($row['GarbageCharges']);?></td>
+                                    <td><?php echo number_format($GarbageChargesPenalty);?></td>                  
+                                    <td><?php echo number_format($GarbageChargesPenalty + $row['GarbageCharges']); ?></td>                    
+                                </tr>
+                                <tr>
+                                    <td>Delivery Trucks/Vans Permit Fee</td>
+                                    <td><?php echo number_format($row['DeliveryTrucks']);?></td>
+                                    <td><?php echo number_format($DeliveryTrucksPenalty );?></td>                  
+                                    <td><?php echo number_format($DeliveryTrucksPenalty + $row['DeliveryTrucks']);?></td>                    
+                                </tr>
+                                <tr>
+                                    <td>Sanitary Inspection Fee</td>
+                                    <td><?php echo number_format($row['SanitaryInspection']);?></td>
+                                    <td><?php echo number_format($SanitaryInspectionPenalty);?></td>                  
+                                    <td><?php echo number_format($SanitaryInspectionPenalty + $row['SanitaryInspection']);?></td>                                                               
+                                </tr>
+                                <tr>
+                                    <td>Building Inspection Fee</td>
+                                    <td><?php echo number_format($row['BldgInspection']);?></td>
+                                    <td><?php echo number_format($BldgInspectionPenalty);?></td>                  
+                                    <td><?php echo number_format($BldgInspectionPenalty + $row['BldgInspection']);?></td>                                                               
+                                </tr>
+                                <tr>
+                                    <td>Electrical Inspection Fee</td>
+                                    <td><?php echo number_format($row['ElectricalInspection']);?></td>
+                                    <td><?php echo number_format($ElectricalInspectionPenalty);?></td>                  
+                                    <td><?php echo number_format($ElectricalInspectionPenalty + $row['ElectricalInspection']);?></td>                                                               
+                                </tr>
+                                <tr>
+                                    <td>Mechanical Inspection Fee</td>
+                                    <td><?php echo number_format($row['MechanicalInspection']);?></td> 
+                                    <td><?php echo number_format($MechanicalInspectionPenalty);?></td>                  
+                                    <td><?php echo number_format($MechanicalInspectionPenalty + $row['MechanicalInspection']);?></td>                                                               
+                                </tr>
+                                <tr>
+                                    <td>Plumbing Inspection Fee</td>
+                                    <td><?php echo number_format($row['PlumbingInspection']);?></td>  
+                                    <td><?php echo number_format($PlumbingInspectionPenalty);?></td>                  
+                                    <td><?php echo number_format($PlumbingInspectionPenalty + $row['PlumbingInspection']);?></td>                                                               
+                                </tr>
+                                <tr>
+                                    <td>Storage and Sale of Combustible/Flamable or Explosive Substance</td>
+                                    <td><?php echo number_format($row['SubstanceStorage']);?></td>       
+                                    <td><?php echo number_format($SubstanceStoragePenalty);?></td>                  
+                                    <td><?php echo number_format($SubstanceStoragePenalty + $row['SubstanceStorage']);?></td>                                                               
+                                </tr>
+                                <tr>
+                                    <td>Others</td>
+                                    <td><?php echo number_format($row['Others']);?></td>    
+                                    <td><?php echo number_format($OthersPenalty);?></td>                  
+                                    <td><?php echo number_format($OthersPenalty + $row['Others']);?></td>                                                               
+                                </tr>
+                                <tr>
+                                    <th>Total Fees For LGU</th>
+                                    <td></td>                  
+                                    <td></td>
+                                    <th>₱ <?php echo number_format($total);?></th>          
+                                              
+                                </tr> 
+                                <tr>
+                                    <th>Fire Safety Inspection Fee (10%)</th>
+                                    <td></td>                  
+                                    <td></td>  
+                                    <th>₱ <?php echo number_format($row['FireSafetyFee']);?></th>   
+                                                    
+                                </tr>
+                                <tr>
+                                    <th>TOTAL</th>
+                                    <td></td>                  
+                                    <td></td>
+                                    <th>₱ <?php echo number_format($row['FireSafetyFee'] + $total);?></th>  
+                                                      
+                                </tr>                      
+                            </tbody>
+                        </table>
 
+                
+                        <br>
+                        <a href="pages-my-businesses.php" class="btn btn-primary">Back</a>
+                    </div>
                   </div>
 
 

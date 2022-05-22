@@ -20,7 +20,7 @@
               inner join business.business on business_mode.businessId = business.id
               inner join business.owner on business.ownerId = owner.id
               inner join business.personal_information on owner.infoId = personal_information.id
-              where mode = 'renew' and status = 'unpaid';") or die($conn->error);
+              where mode = 'renew' and status = 'unpaid' or status ='partially paid';") or die($conn->error);
 
 
           ?>
@@ -69,15 +69,18 @@
                               if($row['status'] == 'unpaid'){
                              ?>
                             <a class="badge bg-warning text-dark"> Unpaid</a>
-                          <?php }else if($row['status'] == 'paid') {?>
-                            <a class="badge bg-success text-light"> Paid </a>
+                          <?php }else if($row['status'] == 'fully paid') {?>
+                            <a class="badge bg-primary text-light">Fully Paid </a>
+                          <?php }else if($row['status'] == 'partially paid') { ?>
+                            <a class="badge bg-success text-light">Partially Paid </a>
                           <?php } ?>
                         </td>
                         <td>
                             <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
                             <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                              <li><a href="../php/admin-function-businesses.php?paid-renew=<?php echo $row['businessId']; ?>" class="dropdown-item" name="paid-renew">Paid</a></li>
                               <li><a href="../php/admin-function-businesses.php?unpaid-renew=<?php echo $row['businessId']; ?>" class="dropdown-item" name="unpaid-renew">Unpaid</a></li>                            
+                              <li><a href="../php/admin-function-businesses.php?partiallyPaid-renew=<?php echo $row['businessId']; ?>" class="dropdown-item" name="partiallyPaid-renew">Partially Paid</a></li>    
+                              <li><a href="../php/admin-function-businesses.php?paid-renew=<?php echo $row['businessId']; ?>" class="dropdown-item" name="paid-renew">Fully Paid</a></li>
                             </ul>
                         </td>
                       </tr>
@@ -95,7 +98,5 @@
 
       </div> 
     </section>
-
   </main><!-- End #main -->
-
 <?php include "../includes/admin-footer.php"; ?>

@@ -100,7 +100,7 @@ if (isset($_GET['paid-renew'])) {
 
 	$businessId = $_GET['paid-renew'];
 	$update = "UPDATE business.business set
-				status = 'paid'
+				status = 'fully paid'
 				where id = $businessId;";
 
 	mysqli_query($conn,$update)or die($conn->error);
@@ -120,16 +120,21 @@ if (isset($_GET['unpaid-renew'])) {
 	mysqli_query($conn,$update)or die($conn->error);
 
 	header("Location: ../administrator/pages-payments-renew.php");
-
 }
 
+if (isset($_GET['partiallyPaid-renew'])) {
+	session_start();
+	
+	$businessId = $_GET['partiallyPaid-renew'];
+	$update = "UPDATE business.business set
+				status = 'partially paid'
+				where id = $businessId;";
 
+	mysqli_query($conn,$update)or die($conn->error);
 
+	header("Location: ../administrator/pages-payments-renew.php");
 
-
-
-
-
+}
 
 if (isset($_GET['paid-retire'])) {
 	session_start();
@@ -156,7 +161,6 @@ if (isset($_GET['unpaid-retire'])) {
 	mysqli_query($conn,$update)or die($conn->error);
 
 	header("Location: ../pages-payment-retire.php");
-
 }
 
 

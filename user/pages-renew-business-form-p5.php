@@ -28,6 +28,7 @@
                       where businessId = $businessId;") or die($conn->error);
 
             $rows = mysqli_fetch_assoc($results);
+            
           ?>
         
    
@@ -88,14 +89,7 @@
                       </div>
                       
                     </div>
-
-                    
-
-                    
                     <br>
-
-                    
-
                   </div>
                   <div class="col-lg-1"></div>
                   <nav aria-label="Page navigation example">

@@ -516,7 +516,6 @@ if(isset($_POST['save'])){
 
 
 
-
 	$addressOwner = "INSERT INTO address(type,bldgNo,bldgName,unitNo,street,brgy,subdivision,municipality,province) VALUES ('owner','$ownerBldgNo','$ownerBldgName','$ownerUnitNo','$ownerStreet','$ownerBrgy','$ownerSubdivition','$ownerMunicipality','$ownerProvince');";
 	$result = mysqli_query($conn, $addressOwner);
 	$addressOwnerId = $conn->insert_id;
@@ -536,7 +535,7 @@ if(isset($_POST['save'])){
 	$result = mysqli_query($conn, $business)or die($conn->error);
 	$busnessId =  $conn->insert_id;
 
-	echo $busnessId;
+	
 	foreach ($_POST['lineOfBus'] as $key => $value) 
 		{
 			$lineOfBus = $_POST["lineOfBus"][$key];
@@ -545,7 +544,7 @@ if(isset($_POST['save'])){
 			$essential = $_POST["essential"][$key];
 			$non_essential = $_POST["non_essential"][$key];
 
-			$sql ="insert into activity(lineOfBusiness,noOfUnits,capitalization,businessId,GrossEssential,GrossNonEssential) values ('$lineOfBus', '$units', '$capitalization',$busnessId,$essential,$non_essential)"; 
+			$sql ="insert into activity(lineOfBusiness,noOfUnits,capitalization,businessId,GrossEssential,GrossNonEssential) values ('$lineOfBus', '$units', '$capitalization',$busnessId,'$essential','$non_essential')"; 
 			$result = mysqli_query($conn, $sql)or die($conn->error);;
 
 		}
@@ -561,6 +560,4 @@ if(isset($_POST['save'])){
 	$result = mysqli_query($conn, $renew)or die($conn->error);
 	header("Location: ../pages-confirmation.php");
 }
-
-
- ?>
+?>

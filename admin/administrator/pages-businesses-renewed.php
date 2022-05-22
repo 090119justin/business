@@ -21,7 +21,7 @@
               inner join business.business on business_mode.businessId = business.id
               inner join business.owner on business.ownerId = owner.id
               inner join business.personal_information on owner.infoId = personal_information.id
-              where mode = 'renew' and status = 'paid';") or die($conn->error);
+              where mode = 'renew' and status = 'fully paid' or status = 'partially paid';") or die($conn->error);
 
 
           ?>
