@@ -63,7 +63,7 @@
                                 <i class="bi bi-eye-fill" ></i> Business 
                               </a>
                               
-                              <a class="badge bg-success text-light" href="pages-view-payments.php?view_data=<?php echo $row ['businessId']; ?>">
+                              <a class="badge bg-success text-light" href="pages-view-payments.php?mode=<?php echo $row['mode'];?>&view_data=<?php echo $row ['businessId']; ?>">
                                 <i class="bi bi-eye-fill" ></i> Payment
                               </a>
                             </td>
