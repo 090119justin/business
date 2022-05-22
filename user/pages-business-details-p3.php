@@ -4,11 +4,11 @@
   <main id="main" class="main">
 
     <div class="pagetitle">
-      <h1>Applicants</h1>
+    <h1>Services</h1>
       <nav>
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="pages-applicants-new.php">New</a></li>
-          <li class="breadcrumb-item active">Review</li>
+          <li class="breadcrumb-item"><a href="pages-applicants-new.php">My Businesses</a></li>
+          <li class="breadcrumb-item active">Business Details</li>
         </ol>
       </nav>
     </div><!-- End Page Title -->

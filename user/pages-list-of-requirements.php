@@ -20,10 +20,9 @@
 
   <main id="main" class="main">
     <div class="pagetitle" >
-      <h1>OBPPS</h1>
+      <h1>Services</h1>
       <nav>
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="index.php">Services</a></li>
           <li class="breadcrumb-item">List of Requirements</li>
           
         </ol>

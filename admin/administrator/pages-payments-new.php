@@ -4,7 +4,7 @@
   <main id="main" class="main">
 
     <div class="pagetitle">
-      <h1>Applicants</h1>
+      <h1>Payments</h1>
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item active">New</li>

@@ -3,7 +3,7 @@
 <main id="main" class="main">
 
     <div class="pagetitle">
-      <h1>Administrator</h1>
+      <h1>Staff</h1>
     </div><!-- End Page Title -->
 
     <section class="section dashboard">
