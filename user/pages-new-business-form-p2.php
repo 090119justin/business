@@ -73,12 +73,9 @@
 
               <div class="row" style="margin-top: 15px;">
               
-                <div class="col-md-12">
+                <div class="col-md-12 autocomplete">
                   <label for="inputName5" class="form-label">Brgy.<label style="color:red;">*</label></label>
-                  <div class="autocomplete" style="width:300px;">
-                    <input id="myInput" type="text" name="myCountry" placeholder="Country">
-                  </div>
-                  <input value="<?php echo $_SESSION['ownerBrgy']; ?>" name="ownerBrgy" type="text" class="form-control" id="inputName5" required="">
+                  <input value="<?php echo $_SESSION['ownerBrgy']; ?>" id="myInput" type="text" name="ownerBrgy" placeholder="Barangay" class="form-control">
                 </div>
               </div>
 

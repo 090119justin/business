@@ -109,7 +109,7 @@
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
   <script type="text/javascript">
-    var countries = ["Afghanistan","Albania","Algeria","Andorra","Angola"]
+    autocomplete(document.getElementById("myInput"), countries);
     function addRow() {
       var root = document.getElementById('mytab').getElementsByTagName('tbody')[0];
       var rows = root.getElementsByTagName('tr');

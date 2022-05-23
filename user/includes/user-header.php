@@ -41,8 +41,9 @@
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
   <script type="text/javascript">
+    var countries = ["Afghanistan","Albania","Algeria","Andorra","Angola"];
     function realTime() {
-
+    
     var date = new Date();
     var hour = date.getHours();
     var min = date.getMinutes();
@@ -118,6 +119,7 @@
         color: #ffffff;
       }
   </style>
+  
 
 
   <!-- =======================================================
