@@ -19,7 +19,7 @@
     require_once "php/function-business-registration.php";
      ?>
     <section class="section">
-      <form class="row g-3" action="php/function-business-registration.php" method="POST">
+      <form autocomplete="off" class="row g-3" action="php/function-business-registration.php" method="POST">
         <div class="col-lg-1"></div>
         <div class="col-lg-10">
           <div class="card">
@@ -75,6 +75,9 @@
               
                 <div class="col-md-12">
                   <label for="inputName5" class="form-label">Brgy.<label style="color:red;">*</label></label>
+                  <div class="autocomplete" style="width:300px;">
+                    <input id="myInput" type="text" name="myCountry" placeholder="Country">
+                  </div>
                   <input value="<?php echo $_SESSION['ownerBrgy']; ?>" name="ownerBrgy" type="text" class="form-control" id="inputName5" required="">
                 </div>
               </div>
