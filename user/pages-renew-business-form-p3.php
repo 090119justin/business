@@ -171,7 +171,7 @@
                               <div class="modal-body">
                                 <div class="col-12">
                                   <label for="yourName" class="form-label">Barangay Name</label>
-                                  <input type="text" name="businessBrgy" class="form-control" id="yourName" required value="<?php echo ucwords($_SESSION['businessBrgy']); ?>">
+                                  <input value="<?php echo ucwords($_SESSION['businessBrgy']); ?>" id="myInput" type="text" name="businessBrgy" class="form-control" required>
                                   <div class="invalid-feedback">Invalid Input</div>
                                 </div>
 

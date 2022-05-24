@@ -59,7 +59,7 @@
 
                 <div class="card-body">
 
-                  <h5 class="mt-4 text-center">Your Renewal Form has been submitted. Please wait for the verification, this may take 72 hourse or less...</h5>
+                  <h5 class="mt-4 text-center">Your Renewal Form has been submitted. Please wait for the verification, this may take 72 hours or less...     </h5>
 
                   
 

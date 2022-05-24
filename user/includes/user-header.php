@@ -41,7 +41,11 @@
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
   <script type="text/javascript">
-    var countries = ["Afghanistan","Albania","Algeria","Andorra","Angola"];
+    var fs = require('fs');
+    var text = fs.readFileSync("./streets.txt", 'utf-8');
+    var streets = text.split(', ');
+    console.log(streets);  
+    var countries = ["Adlawan","Bago","Balijuagan","Banica","Barra","Bato","Baybay","Bolo","Cabugao","Cagay","Cogon","Culajao","Culasi","Dayao","Dinginan","Dumulog","Gabuan","Inzo Arnaldo Village","Jumaguicjic","Lanot","Lawa-an","Libas","Liong","Loctugan","Lonoy","Milibili","Mongpong","Olotayan","Poblacion I","Poblacion II","Poblacion III","Poblacion IV","Poblacion VI","Poblacion VII","Poblacion VIII","Poblacion X","Poblacion XI","Punta Tabuc","San Jose","Sibaguan","Talon","Tanque","Tanza","Tiza"];
     function realTime() {
     
     var date = new Date();

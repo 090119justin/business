@@ -75,7 +75,7 @@
               
                 <div class="col-md-12 autocomplete">
                   <label for="inputName5" class="form-label">Brgy.<label style="color:red;">*</label></label>
-                  <input value="<?php echo $_SESSION['ownerBrgy']; ?>" id="myInput" type="text" name="ownerBrgy" placeholder="Barangay" class="form-control">
+                  <input value="<?php echo $_SESSION['ownerBrgy']; ?>" id="myInput" type="text" name="ownerBrgy" placeholder="Barangay" class="form-control" required="">
                 </div>
               </div>
 
