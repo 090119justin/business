@@ -59,17 +59,31 @@ $lessorsContactNo = "";
 $lessorsEmail ="";
 $lessorsMonthlyRental = "";
 
-if (isset($_GET['paid-new'])) {
+if (isset($_GET['fullyPaid-new'])) {
 	session_start();
 
-	$businessId = $_GET['paid-new'];
+	$businessId = $_GET['fullyPaid-new'];
 	$update = "UPDATE business.business set
-				status = 'paid'
+				status = 'fully paid'
 				where id = $businessId;";
 
 	mysqli_query($conn,$update)or die($conn->error);
 
 		header("Location: ../staff/pages-payments-new.php");
+
+}
+
+if (isset($_GET['partiallyPaid-new'])) {
+	session_start();
+	
+	$businessId = $_GET['partiallyPaid-new'];
+	$update = "UPDATE business.business set
+				status = 'partially paid'
+				where id = $businessId;";
+
+	mysqli_query($conn,$update)or die($conn->error);
+
+	header("Location: ../staff/pages-payments-new.php");
 
 }
 
@@ -93,12 +107,26 @@ if (isset($_GET['unpaid-new'])) {
 
 
 
-if (isset($_GET['paid-renew'])) {
+if (isset($_GET['fullyPaid-renew'])) {
+	session_start();
+
+	$businessId = $_GET['fullyPaid-renew'];
+	$update = "UPDATE business.business set
+				status = 'fully paid'
+				where id = $businessId;";
+
+	mysqli_query($conn,$update)or die($conn->error);
+
+		header("Location: ../staff/pages-payments-renew.php");
+
+}
+
+if (isset($_GET['partiallyPaid-renew'])) {
 	session_start();
 
 	$businessId = $_GET['paid-renew'];
 	$update = "UPDATE business.business set
-				status = 'paid'
+				status = 'partially paid'
 				where id = $businessId;";
 
 	mysqli_query($conn,$update)or die($conn->error);

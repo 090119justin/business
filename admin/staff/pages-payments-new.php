@@ -21,7 +21,7 @@
               inner join business.business on business_mode.businessId = business.id
               inner join business.owner on business.ownerId = owner.id
               inner join business.personal_information on owner.infoId = personal_information.id
-              where mode = 'new' and status = 'unpaid';") or die($conn->error);
+              where mode = 'new' and status = 'unpaid' or status = 'partially paid';") or die($conn->error);
 
 
           ?>
@@ -70,15 +70,16 @@
                               if($row['status'] == 'unpaid'){
                              ?>
                             <a class="badge bg-warning text-dark"> Unpaid</a>
-                          <?php }else if($row['status'] == 'paid') {?>
-                            <a class="badge bg-success text-light"> Paid </a>
+                          <?php }else if($row['status'] == 'partially paid') {?>
+                            <a class="badge bg-success text-light"> Partially Paid </a>
                           <?php } ?>
                         </td>
                         <td>
                             <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
                             <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                              <li><a href="../php/staff-function-businesses.php?paid-new=<?php echo $row['businessId']; ?>" class="dropdown-item" name="paid-new">Paid</a></li>
                               <li><a href="../php/staff-function-businesses.php?unpaid-new=<?php echo $row['businessId']; ?>" class="dropdown-item" name="unpaid-new">Unpaid</a></li>                            
+                              <li><a href="../php/staff-function-businesses.php?partiallyPaid-new=<?php echo $row['businessId']; ?>" class="dropdown-item" name="partiallyPaid-new">Partially Paid</a></li>
+                              <li><a href="../php/staff-function-businesses.php?fullyPaid-new=<?php echo $row['businessId']; ?>" class="dropdown-item" name="fullyPaid-new">Fully Paid</a></li>
                             </ul>
                         </td>
                       </tr>

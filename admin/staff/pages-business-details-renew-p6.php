@@ -1,4 +1,4 @@
-<?php $page='businesses'; $subpage='businessRenew'; include "../includes/admin-header.php"; ?>
+<?php $page='businesses'; $subpage='businessRenew'; include "../includes/staff-header.php"; ?>
 
 
   <main id="main" class="main">
@@ -97,7 +97,7 @@
 
             $total = $total + $MayorPenalty +  $GarbageChargesPenalty + $DeliveryTrucksPenalty + $SanitaryInspectionPenalty + $BldgInspectionPenalty + $ElectricalInspectionPenalty + $MechanicalInspectionPenalty + $PlumbingInspectionPenalty + $SubstanceStoragePenalty + $OthersPenalty;
           ?>
-      <form method="POST" action="php/admin-function-verify.php">
+      <form method="POST" action="php/staff-function-verify.php">
         <input type="hidden" name="businessId" value="<?php echo $_GET['view_data6']?>">
         <div>
           <!-- Recent Applicants -->
@@ -346,4 +346,4 @@
 
   </main><!-- End #main -->
 
-<?php include "../includes/admin-footer.php"; ?>
+<?php include "../includes/staff-footer.php"; ?>

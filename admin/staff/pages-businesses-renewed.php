@@ -1,13 +1,13 @@
-<?php $page='payments'; $subpage='paymentsNew'; include "../includes/admin-header.php"; ?>
+<?php $page='businesses'; $subpage='businessRenew'; include "../includes/staff-header.php"; ?>
 
 
   <main id="main" class="main">
 
     <div class="pagetitle">
-      <h1>Payments</h1>
+      <h1>Businesses</h1>
       <nav>
         <ol class="breadcrumb">
-          <li class="breadcrumb-item active">New</li>
+          <li class="breadcrumb-item active">Renewed</li>
         </ol>
       </nav>
     </div><!-- End Page Title -->
@@ -21,14 +21,14 @@
               inner join business.business on business_mode.businessId = business.id
               inner join business.owner on business.ownerId = owner.id
               inner join business.personal_information on owner.infoId = personal_information.id
-              where mode = 'new' and status = 'unpaid' or status = 'partially paid';") or die($conn->error);
+              where mode = 'renew' and status = 'fully paid' or status = 'partially paid';") or die($conn->error);
 
 
           ?>
    
         <!-- Recent Applicants -->
         <div class="col-12">
-          <form method="POST" action="../php/admin-function-businesses.php">
+          <form method="POST" action="php/staff-function-businesses.php">
             <div class="card recent-sales">
               
               <div class="filter">
@@ -53,8 +53,8 @@
                       <th scope="col">#</th>
                       <th scope="col">Owner</th>
                       <th scope="col">Business Name</th>
-                      <th scope="col">Status</th>
-                      <th scope="col">Update</th>
+                      <th scope="col">Action</th>
+                      
                     </tr>
                   </thead>
                   <tbody>
@@ -65,24 +65,9 @@
                         <td><?php echo $row['name'];?></td>
                         <td class="text-primary" ><?php echo $row['businessName'];?></td>
                         <td>
-                          
-                            <?php 
-                              if($row['status'] == 'unpaid'){
-                             ?>
-                            <a class="badge bg-warning text-dark"> Unpaid</a>
-                          <?php }else if($row['status'] == 'partially paid') {?>
-                            <a class="badge bg-success text-light">Partially Paid </a>
-                          <?php } ?>
+                          <a class="badge bg-info text-dark" type="button" href="pages-business-details-renew.php?view_data=<?php echo $row['businessId']; ?>"><i class="bi bi-eye-fill" ></i> View </a>
                         </td>
-                        <td>
-                            <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-                            <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                              <li><a href="../php/admin-function-businesses.php?unpaid-new=<?php echo $row['businessId']; ?>" class="dropdown-item" name="unpaid-new">Unpaid</a></li>
-                              <li><a href="../php/admin-function-businesses.php?partiallyPaid-new=<?php echo $row['businessId']; ?>" class="dropdown-item" name="partialyPaid-new">Partialy Paid</a></li>
-                              <li><a href="../php/admin-function-businesses.php?fullyPaid-new=<?php echo $row['businessId']; ?>" class="dropdown-item" name="fullyPaid-new">Fully Paid</a></li>
-
-                            </ul>
-                        </td>
+                        
                       </tr>
                   <?php endwhile; ?>
 
@@ -101,4 +86,4 @@
 
   </main><!-- End #main -->
 
-<?php include "../includes/admin-footer.php"; ?>
+<?php include "../includes/staff-footer.php"; ?>

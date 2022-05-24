@@ -267,6 +267,8 @@ if(isset($_POST['save'])){
 	$mode = "INSERT into business_mode(businessId)values($busnessId);";
 	$result = mysqli_query($conn, $mode)or die($conn->error);
 
+	$lessor = "INSERT into lessor(fullName, fullAddress, contactNo, email, monthly, businessId)values('$lessorsName','$lessorsAddress', '$lessorsContactNo','$lessorsEmail',$lessorsMonthlyRental,$busnessId);";
+	$lessorResult =  mysqli_query($conn, $lessor)or die($conn->error);
 
 	$processed = "UPDATE business.requirements set status = 'processed' where personId = $personId; ";
 	$result = mysqli_query($conn, $processed)or die($conn->error);

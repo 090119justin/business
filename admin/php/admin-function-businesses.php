@@ -61,17 +61,31 @@ $lessorsMonthlyRental = "";
 
 
 
-if (isset($_GET['paid-new'])) {
+if (isset($_GET['fullyPaid-new'])) {
 	session_start();
 
-	$businessId = $_GET['paid-new'];
+	$businessId = $_GET['fullyPaid-new'];
 	$update = "UPDATE business.business set
-				status = 'paid'
+				status = 'fully paid'
 				where id = $businessId;";
 
 	mysqli_query($conn,$update)or die($conn->error);
 
 		header("Location: ../administrator/pages-payments-new.php");
+
+}
+
+if (isset($_GET['partiallyPaid-new'])) {
+	session_start();
+	
+	$businessId = $_GET['partiallyPaid-new'];
+	$update = "UPDATE business.business set
+				status = 'partially paid'
+				where id = $businessId;";
+
+	mysqli_query($conn,$update)or die($conn->error);
+
+	header("Location: ../administrator/pages-payments-new.php");
 
 }
 

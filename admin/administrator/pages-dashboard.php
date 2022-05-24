@@ -272,70 +272,7 @@
             </div><!-- End Reports -->
 
             <!-- Recent Sales -->
-            <div class="col-12">
-              <div class="card recent-sales">
-
-                <div class="filter">
-                  <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-                  <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                    <li class="dropdown-header text-start">
-                      <h6>Filter</h6>
-                    </li>
-
-                    <li><a class="dropdown-item" href="#">Today</a></li>
-                    <li><a class="dropdown-item" href="#">This Month</a></li>
-                    <li><a class="dropdown-item" href="#">This Year</a></li>
-                  </ul>
-                </div>
-
-                <div class="card-body">
-                  <?php       
-                      $result = $conn->query("select business.id, concat('#',lpad(business.id,4,'0')) as newId ,concat(firstName,' ',lastName) as name, businessName, status
-                        from business.business
-                        inner join business.owner on business.ownerId = owner.id
-                        inner join business.personal_information on owner.infoId = personal_information.id
-                        where status != 'renewed'") or die($conn->error);
-                    ?>
-
-                  <h5 class="card-title">Businesses</h5>
-
-                  <table class="table table-borderless datatable">
-                    <thead>
-                      <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Owner</th>
-                        <th scope="col">Business Name</th>
-                        <th scope="col">Status</th>
-                      </tr>
-                    </thead>
-                    <?php
-                    while ($row = $result->fetch_assoc()): ?>
-                      <tr>
-                        <th scope="row"><a href="#"><?php echo $row['newId'];?></a></th>
-                        <td><?php echo $row['name'];?></td>
-                        <td class="text-primary" ><?php echo $row['businessName'];?></td>
-                        <td>
-                          
-                            <?php 
-                              if($row['status'] == 'unpaid'){
-                             ?>
-                            <a class="badge bg-warning text-dark"> Unpaid</a>
-                          <?php }else if($row['status'] == 'paid') {?>
-                            <a class="badge bg-success text-light" style="width: 52px;">Paid</a>
-                          
-                          <?php }else if($row['status'] == 'retired') {?>
-                            <a class="badge bg-danger text-light"> Retired </a>
-                          <?php } ?>
-                        </td>
-                      </tr>
-                    <?php endwhile; ?>
-                    </thead>
-                  </table>
-
-                </div>
-
-              </div>
-            </div><!-- End Recent Sales -->
+            
 
           </div>
         </div><!-- End Left side columns -->
@@ -495,6 +432,76 @@
 
         </div><!-- End Right side columns -->
 
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <div class="card recent-sales">
+
+            <div class="filter">
+              <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+              <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                <li class="dropdown-header text-start">
+                  <h6>Filter</h6>
+                </li>
+
+                <li><a class="dropdown-item" href="#">Today</a></li>
+                <li><a class="dropdown-item" href="#">This Month</a></li>
+                <li><a class="dropdown-item" href="#">This Year</a></li>
+              </ul>
+            </div>
+
+            <div class="card-body">
+              <?php       
+                  $result = $conn->query("select business.id, concat('#',lpad(business.id,4,'0')) as newId ,concat(firstName,' ',lastName) as name, businessName, status
+                    from business.business
+                    inner join business.owner on business.ownerId = owner.id
+                    inner join business.personal_information on owner.infoId = personal_information.id
+                    where status != 'renewed'") or die($conn->error);
+                ?>
+
+              <h5 class="card-title">Businesses</h5>
+
+              <table class="table table-borderless datatable">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Owner</th>
+                    <th scope="col">Business Name</th>
+                    <th scope="col">Status</th>
+                  </tr>
+                </thead>
+                <?php
+                while ($row = $result->fetch_assoc()): ?>
+                  <tr>
+                    <th scope="row"><a href="#"><?php echo $row['newId'];?></a></th>
+                    <td><?php echo $row['name'];?></td>
+                    <td class="text-primary" ><?php echo $row['businessName'];?></td>
+                    <td>
+                      
+                        <?php 
+                          if($row['status'] == 'unpaid'){
+                          ?>
+                        <a class="badge bg-warning text-dark"> Unpaid</a>
+                      <?php }else if($row['status'] == 'fully paid') {?>
+                        <a class="badge bg-success text-light" >Fully Paid</a>
+                      
+                      <?php }else if($row['status'] == 'retired') {?>
+                        <a class="badge bg-danger text-light"> Retired</a>
+                      <?php }else if($row['status'] == 'partially paid') {?>
+                        <a class="badge bg-primary text-light"> Partially Paid</a>
+                      <?php } else if($row['status'] == 'pending') {?>
+                        <a class="badge bg-info text-light"> Pending</a>
+                      <?php } ?>
+                    </td>
+                  </tr>
+                <?php endwhile; ?>
+                </thead>
+              </table>
+
+            </div>
+
+          </div>
+        </div><!-- End Recent Sales -->
       </div>
     </section>
 

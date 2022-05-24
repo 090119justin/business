@@ -22,7 +22,7 @@
                        inner join business.business on business_mode.businessId = business.id
                        INNER JOIN business.owner on business.ownerId = owner.id
                        inner join business.personal_information on owner.infoId = personal_information.id
-                       where infoId = $infoId;") or die($conn->error);
+                       where infoId = $infoId and status != 'renewed';") or die($conn->error);
            
           ?>
         
