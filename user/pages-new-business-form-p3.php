@@ -67,15 +67,15 @@
 
               <div class="row" style="margin-top: 15px;">
               
-                <div class="col-md-12">
+                <div class="col-md-12 autocomplete">
                   <label for="inputName5" class="form-label">Street<label style="color:red;">*</label></label>
-                  <input value="<?php echo $_SESSION['businessStreet']; ?>" name="businessStreet" type="text" class="form-control" id="inputName5" required="">
+                  <input value="<?php echo $_SESSION['businessStreet']; ?>" name="businessStreet" type="text" class="form-control" id="ownerStreet" required="">
                 </div>
               </div>
 
               <div class="row" style="margin-top: 15px;">
               
-                <div class="col-md-12">
+                <div class="col-md-12 autocomplete">
                   <label for="inputName5" class="form-label">Brgy.<label style="color:red;">*</label></label>
                   <input value="<?php echo $_SESSION['businessBrgy']; ?>" id="myInput" type="text" name="businessBrgy" placeholder="Barangay" class="form-control" required="">
                 </div>
@@ -92,12 +92,12 @@
               <div class="row" style="margin-top: 15px;">
                 <div class="col-md-6">
                   <label for="inputName5" class="form-label">City/Municipality<label style="color:red;">*</label></label>
-                  <input value="<?php echo $_SESSION['businessMunicipality']; ?>" name="businessMunicipality" type="text" class="form-control" id="inputName5" required="">
+                  <input value="Roxas City" name="businessMunicipality" type="text" class="form-control" id="inputName5" disabled>
                 </div>
 
                 <div class="col-md-6">
                   <label for="inputName5" class="form-label">Province<label style="color:red;">*</label></label>
-                  <input value="<?php echo $_SESSION['businessProvince']; ?>" name="businessProvince" type="text" class="form-control" id="inputName5" required="">
+                  <input value="Capiz" name="businessProvince" type="text" class="form-control" id="inputName5" disabled>
                 </div>
               </div>
 
