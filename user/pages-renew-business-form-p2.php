@@ -135,9 +135,9 @@
 
                             <form method="POST" action="php/function-business-renewal.php">
                               <div class="modal-body">
-                                <div class="col-12">
+                                <div class="col-12 autocomplete">
                                   <label for="yourName" class="form-label">Street Name</label>
-                                  <input type="text" name="street" class="form-control" id="yourName" required value="<?php echo ucwords($_SESSION['street']); ?>">
+                                  <input value="<?php echo $_SESSION['street']; ?>" name="street" type="text" class="form-control" id="ownerStreet" required="">
                                   <div class="invalid-feedback">Invalid Input</div>
                                 </div>
 
@@ -167,7 +167,7 @@
 
                             <form method="POST" action="php/function-business-renewal.php">
                               <div class="modal-body">
-                                <div class="col-12">
+                                <div class="col-12 autocomplete">
                                   <label for="yourName" class="form-label">Barangay Name</label>
                                   <input value="<?php echo ucwords($_SESSION['brgy']); ?>" id="myInput" type="text" name="brgy" class="form-control" required>
                                   <div class="invalid-feedback">Invalid Input</div>

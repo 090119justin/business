@@ -42,7 +42,7 @@
   <link href="assets/css/style.css" rel="stylesheet">
   <script type="text/javascript">
     
-    var street = ["asd"];
+    var street = ["Altavas Street","Arellano Street","Arnaldo Boulevard","Arsobispo Street","Bangbang Street","Banica","Barangay Culajao Road","Barangay II","Barangay III","Barangay IV","Barangay IX","Barangay Mongpong Road","Barangay VIII","Barra","Baybay","Bayot Drive","Bayot Street","Bilbao Street","Burgos Street","Cadimahan Road","Cagay","Calipayan Road","Capricho II Street","Culasi","Datiles Street","Dayao","Debonair Street","Eloisa Street","Fuentes Drive","Capiz State University","Fuentes Drive","Gomez Street","Hughes Street","Iloilo-Capiz Road","Inzo Arnaldo Village","Lapu-Lapu Street","Legazpi Street","Loctugan","Lopez Jaena Street","Lourdes Street","Luna Novicio Street","Mabini Street","Magallanes Street","McKinley Street","National Highway","Pavia Street","Plaridel Street","Premier de Mayo Street","Punta Cogon","Rizal Street","Roxas Airport Access Road","Roxas Avenue","Sacred Heart of Jesus Avenue","San Jose Street","San Roque Street","San Roque Street","Taft Street","Tanque","Teodorica Avenue","Unnamed Road","Zamora Street"];
     var countries = ["Adlawan","Bago","Balijuagan","Banica","Barra","Bato","Baybay","Bolo","Cabugao","Cagay","Cogon","Culajao","Culasi","Dayao","Dinginan","Dumulog","Gabuan","Inzo Arnaldo Village","Jumaguicjic","Lanot","Lawa-an","Libas","Liong","Loctugan","Lonoy","Milibili","Mongpong","Olotayan","Poblacion I","Poblacion II","Poblacion III","Poblacion IV","Poblacion VI","Poblacion VII","Poblacion VIII","Poblacion X","Poblacion XI","Punta Tabuc","San Jose","Sibaguan","Talon","Tanque","Tanza","Tiza"];
     function realTime() {
     
@@ -386,7 +386,7 @@
           </li>
           <li>
             <a href="pages-retirement-businesses.php" class="<?php if($subpage == "retireBusiness") echo "active" ?>">
-              <i class="bi bi-circle"></i><span>Retirement of Business</span>
+              <i class="bi bi-circle"></i><span>Retirement Process</span>
             </a>
           </li>
           <li>

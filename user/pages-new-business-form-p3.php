@@ -67,15 +67,15 @@
 
               <div class="row" style="margin-top: 15px;">
               
-                <div class="col-md-12">
+                <div class="col-md-12 autocomplete">
                   <label for="inputName5" class="form-label">Street<label style="color:red;">*</label></label>
-                  <input value="<?php echo $_SESSION['businessStreet']; ?>" name="businessStreet" type="text" class="form-control" id="inputName5" required="">
+                  <input value="<?php echo $_SESSION['businessStreet']; ?>" name="businessStreet" type="text" class="form-control" id="ownerStreet" required="">
                 </div>
               </div>
 
               <div class="row" style="margin-top: 15px;">
               
-                <div class="col-md-12">
+                <div class="col-md-12 autocomplete">
                   <label for="inputName5" class="form-label">Brgy.<label style="color:red;">*</label></label>
                   <input value="<?php echo $_SESSION['businessBrgy']; ?>" id="myInput" type="text" name="businessBrgy" placeholder="Barangay" class="form-control" required="">
                 </div>
