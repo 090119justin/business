@@ -90,12 +90,12 @@
               <div class="row" style="margin-top: 15px;">
                 <div class="col-md-6">
                   <label for="inputName5" class="form-label">City/Municipality<label style="color:red;">*</label></label>
-                  <input value="<?php echo $_SESSION['ownerMunicipality']; ?>" name="ownerMunicipality" type="text" class="form-control" id="inputName5" required="">
+                  <input value="Roxas City" name="ownerMunicipality" type="text" class="form-control" id="inputName5" disabled>
                 </div>
 
                 <div class="col-md-6">
                   <label for="inputName5" class="form-label">Province<label style="color:red;">*</label></label>
-                  <input value="<?php echo $_SESSION['ownerProvince']; ?>" name="ownerProvince" type="text" class="form-control" id="inputName5" required="">
+                  <input value="Capiz" name="ownerProvince" type="text" class="form-control" id="inputName5" disabled>
                 </div>
               </div>
 
