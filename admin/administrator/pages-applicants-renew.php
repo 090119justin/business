@@ -6,7 +6,7 @@
       <h1>Applicants</h1>
       <nav>
         <ol class="breadcrumb">
-          <li class="breadcrumb-item active">Renew</li>
+          <li class="breadcrumb-item active">Renewal</li>
         </ol>
       </nav>
     </div><!-- End Page Title -->

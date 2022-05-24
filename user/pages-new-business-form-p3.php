@@ -77,7 +77,7 @@
               
                 <div class="col-md-12">
                   <label for="inputName5" class="form-label">Brgy.<label style="color:red;">*</label></label>
-                  <input value="<?php echo $_SESSION['businessBrgy']; ?>" name="businessBrgy" type="text" class="form-control" id="inputName5" required="">
+                  <input value="<?php echo $_SESSION['businessBrgy']; ?>" id="myInput" type="text" name="businessBrgy" placeholder="Barangay" class="form-control" required="">
                 </div>
               </div>
 

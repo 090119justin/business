@@ -19,7 +19,7 @@
     require_once "php/function-business-registration.php";
      ?>
     <section class="section">
-      <form class="row g-3" action="php/function-business-registration.php" method="POST">
+      <form autocomplete="off" class="row g-3" action="php/function-business-registration.php" method="POST">
         <div class="col-lg-1"></div>
         <div class="col-lg-10">
           <div class="card">
@@ -65,17 +65,17 @@
 
               <div class="row" style="margin-top: 15px;">
               
-                <div class="col-md-12">
+                <div class="col-md-12 autocomplete">
                   <label for="inputName5" class="form-label">Street<label style="color:red;">*</label></label>
-                  <input value="<?php echo $_SESSION['ownerStreet']; ?>" name="ownerStreet" type="text" class="form-control" id="inputName5" required="">
+                  <input value="<?php echo $_SESSION['ownerStreet']; ?>" name="ownerStreet" type="text" class="form-control" id="ownerStreet" required="">
                 </div>
               </div>
 
               <div class="row" style="margin-top: 15px;">
               
-                <div class="col-md-12">
+                <div class="col-md-12 autocomplete">
                   <label for="inputName5" class="form-label">Brgy.<label style="color:red;">*</label></label>
-                  <input value="<?php echo $_SESSION['ownerBrgy']; ?>" name="ownerBrgy" type="text" class="form-control" id="inputName5" required="">
+                  <input value="<?php echo $_SESSION['ownerBrgy']; ?>" id="myInput" type="text" name="ownerBrgy" placeholder="Barangay" class="form-control" required="">
                 </div>
               </div>
 

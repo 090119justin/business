@@ -46,8 +46,8 @@
                     <td>DTI Bus. Name Reg. (for single) /  SEC Reg. (for partnership/Corp.)</td>
                     <td>
                       <select name="DTIBusName" class="form-select" id="floatingSelect" aria-label="Floating label select example" required="">
-                        <option value="not submitted">Not Submitted</option>
                         <option value="verified">Verified</option>
+                        <option value="not submitted">Not Submitted</option>
                         <option value="denied">Denied</option>
                       </select>
                     </td>
@@ -58,8 +58,8 @@
                     <td>Brgy. Clearance (for Business)</td>
                     <td>
                       <select name="BrgyClearance" class="form-select" id="floatingSelect" aria-label="Floating label select example" required="">
-                        <option value="not submitted">Not Submitted</option>
                         <option value="verified">Verified</option>
+                        <option value="not submitted">Not Submitted</option>
                         <option value="denied">Denied</option>
                       </select>
                     </td>
@@ -70,8 +70,8 @@
                     <td>Zoning Clearance (CPDO)</td>
                     <td>
                       <select name="zoningClearance" class="form-select" id="floatingSelect" aria-label="Floating label select example" required="">
-                        <option value="not submitted">Not Submitted</option>
                         <option value="verified">Verified</option>
+                        <option value="not submitted">Not Submitted</option>
                         <option value="denied">Denied</option>
                       </select>
                     </td>
@@ -81,8 +81,8 @@
                     <td>Cert. of Annual Inspection (CEO)</td>
                     <td>
                       <select name="ceo" class="form-select" id="floatingSelect" aria-label="Floating label select example" required="">
-                        <option value="not submitted">Not Submitted</option>
                         <option value="verified">Verified</option>
+                        <option value="not submitted">Not Submitted</option>
                         <option value="denied">Denied</option>
                       </select>
                     </td>
@@ -92,8 +92,8 @@
                     <td>Fire Safty Inspection Cert. (BFP)</td>
                     <td>
                       <select name="bfp" class="form-select" id="floatingSelect" aria-label="Floating label select example" required="">
-                        <option value="not submitted">Not Submitted</option>
                         <option value="verified">Verified</option>
+                        <option value="not submitted">Not Submitted</option>
                         <option value="denied">Denied</option>
                       </select>
                     </td>
@@ -103,8 +103,8 @@
                     <td>Sanitary Permit (CHO)</td>
                     <td>
                       <select name="cho" class="form-select" id="floatingSelect" aria-label="Floating label select example" required="">
-                        <option value="not submitted">Not Submitted</option>
                         <option value="verified">Verified</option>
+                        <option value="not submitted">Not Submitted</option>
                         <option value="denied">Denied</option>
                       </select>
                     </td>
@@ -115,8 +115,8 @@
                     <td>Contract of Lease (if space is rented)</td>
                     <td>
                       <select name="contractLease" class="form-select" id="floatingSelect" aria-label="Floating label select example" required="">
-                        <option value="not submitted">Not Submitted</option>
                         <option value="verified">Verified</option>
+                        <option value="not submitted">Not Submitted</option>
                         <option value="denied">Denied</option>
                       </select>
                     </td>
@@ -127,8 +127,8 @@
                     <td>Sedula (Community Tax Cert.)</td>
                     <td>
                       <select name="sedula" class="form-select" id="floatingSelect" aria-label="Floating label select example" required="">
-                        <option value="not submitted">Not Submitted</option>
                         <option value="verified">Verified</option>
+                        <option value="not submitted">Not Submitted</option>
                         <option value="denied">Denied</option>
                       </select>
                     </td>
@@ -139,8 +139,8 @@
                     <td>Invested Capital</td>
                     <td>
                       <select name="investedCapital" class="form-select" id="floatingSelect" aria-label="Floating label select example" required="">
-                        <option value="not submitted">Not Submitted</option>
                         <option value="verified">Verified</option>
+                        <option value="not submitted">Not Submitted</option>
                         <option value="denied">Denied</option>
                       </select>
                     </td>
@@ -151,8 +151,8 @@
                     <td>Picture of Bus. Establishment</td>
                     <td>
                       <select name="picture" class="form-select" id="floatingSelect" aria-label="Floating label select example" required="">
-                        <option value="not submitted">Not Submitted</option>
                         <option value="verified">Verified</option>
+                        <option value="not submitted">Not Submitted</option>
                         <option value="denied">Denied</option>
                       </select>
                     </td>
@@ -163,8 +163,8 @@
                     <td>Other Document/s necessary to support application depending on the nature of Business</td>
                     <td>
                       <select name="others" class="form-select" id="floatingSelect" aria-label="Floating label select example" required="">
-                        <option value="not submitted">Not Submitted</option>
                         <option value="verified">Verified</option>
+                        <option value="not submitted">Not Submitted</option>
                         <option value="denied">Denied</option>
                       </select>
                     </td>
