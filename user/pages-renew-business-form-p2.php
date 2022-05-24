@@ -222,7 +222,7 @@
                     <div class="row">
                       <div class="col-lg-3 col-md-4 label ">City/Municipality</div>
                       <div class="col-lg-5 col-md-4"><?php echo ucwords($_SESSION['municipality']); ?></div>
-                      <div class="col-lg-4 col-md-4 label "><a href="" type="button" data-bs-toggle="modal" data-bs-target="#Municipality"><i class="bx bxs-pencil text-primary"></i></a></div>
+                      <!-- <div class="col-lg-4 col-md-4 label "><a href="" type="button" data-bs-toggle="modal" data-bs-target="#Municipality"><i class="bx bxs-pencil text-primary"></i></a></div> -->
                       <div class="modal fade" id="Municipality" tabindex="-1">
                         <div class="modal-dialog">
                           <div class="modal-content">
@@ -254,7 +254,7 @@
                     <div class="row">
                       <div class="col-lg-3 col-md-4 label ">Province</div>
                       <div class="col-lg-5 col-md-4"><?php echo ucwords($_SESSION['province']); ?></div>
-                      <div class="col-lg-4 col-md-4 label "><a href="" type="button" data-bs-toggle="modal" data-bs-target="#Province"><i class="bx bxs-pencil text-primary"></i></a></div>
+                      <!-- <div class="col-lg-4 col-md-4 label "><a href="" type="button" data-bs-toggle="modal" data-bs-target="#Province"><i class="bx bxs-pencil text-primary"></i></a></div> -->
                       <div class="modal fade" id="Province" tabindex="-1">
                         <div class="modal-dialog">
                           <div class="modal-content">

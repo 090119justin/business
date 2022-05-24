@@ -8,8 +8,7 @@
       <h1>Applicants</h1>
       <nav>
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="pages-applicants-new.php">New</a></li>
-          <li class="breadcrumb-item active">Review</li>
+          <li class="breadcrumb-item active">Renew</li>
         </ol>
       </nav>
     </div><!-- End Page Title -->
