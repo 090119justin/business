@@ -110,6 +110,7 @@
   <script src="assets/js/main.js"></script>
   <script type="text/javascript">
     autocomplete(document.getElementById("myInput"), countries);
+    autocomplete(document.getElementById("ownerStreet"), street);
     function addRow() {
       var root = document.getElementById('mytab').getElementsByTagName('tbody')[0];
       var rows = root.getElementsByTagName('tr');

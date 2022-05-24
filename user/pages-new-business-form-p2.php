@@ -65,9 +65,9 @@
 
               <div class="row" style="margin-top: 15px;">
               
-                <div class="col-md-12">
+                <div class="col-md-12 autocomplete">
                   <label for="inputName5" class="form-label">Street<label style="color:red;">*</label></label>
-                  <input value="<?php echo $_SESSION['ownerStreet']; ?>" name="ownerStreet" type="text" class="form-control" id="inputName5" required="">
+                  <input value="<?php echo $_SESSION['ownerStreet']; ?>" name="ownerStreet" type="text" class="form-control" id="ownerStreet" required="">
                 </div>
               </div>
 
