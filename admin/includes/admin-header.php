@@ -323,11 +323,11 @@ if(empty($_SESSION)){
               <i class="bi bi-circle"></i><span>Renewal</span>
             </a>
           </li>
-          <li>
+          <!-- <li>
             <a href="pages-applicants-retirement.php" class="<?php if($subpage == "applicantsRetire") echo "active" ?>">            
               <i class="bi bi-circle"></i><span>Retirement</span>
             </a>
-          </li>
+          </li> -->
         </ul>
       </li>
 
@@ -347,11 +347,11 @@ if(empty($_SESSION)){
               <i class="bi bi-circle"></i><span>Renewed</span>
             </a>
           </li>
-          <li>
+          <!-- <li>
             <a href="pages-businesses-retired.php" class="<?php if($subpage == "businessRetire") echo "active" ?>">
               <i class="bi bi-circle"></i><span>Retired</span>
             </a>
-          </li>
+          </li> -->
           
         </ul>
       </li>
@@ -368,14 +368,14 @@ if(empty($_SESSION)){
           </li>
           <li>
             <a href="pages-payments-renew.php" class="<?php if($subpage == "paymentsRenew") echo "active" ?>">
-              <i class="bi bi-circle"></i><span>Renewed</span>
+              <i class="bi bi-circle"></i><span>Renewal</span>
             </a>
           </li>
-          <li>
+          <!-- <li>
             <a href="pages-payments-retired.php" class="<?php if($subpage == "paymentsRetire") echo "active" ?>">
               <i class="bi bi-circle"></i><span>Retired</span>
             </a>
-          </li>
+          </li> -->
           
         </ul>
       </li>

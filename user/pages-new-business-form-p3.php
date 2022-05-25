@@ -84,7 +84,7 @@
               <div class="row" style="margin-top: 15px;">
               
                 <div class="col-md-12">
-                  <label for="inputName5" class="form-label">Subdivition</label>
+                  <label for="inputName5" class="form-label">Subdivision</label>
                   <input value="<?php echo $_SESSION['businessSubdivition']; ?>" name="businessSubdivition" type="text" class="form-control" id="inputName5" >
                 </div>
               </div>

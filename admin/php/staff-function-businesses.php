@@ -124,7 +124,7 @@ if (isset($_GET['fullyPaid-renew'])) {
 if (isset($_GET['partiallyPaid-renew'])) {
 	session_start();
 
-	$businessId = $_GET['paid-renew'];
+	$businessId = $_GET['partiallyPaid-renew'];
 	$update = "UPDATE business.business set
 				status = 'partially paid'
 				where id = $businessId;";

@@ -280,8 +280,8 @@
         <!-- Right side columns -->
         <div class="col-lg-4">
 
-          <!-- Recent Activity -->
-          <div class="card">
+
+          <!-- <div class="card">
             <div class="filter">
               <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
               <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
@@ -306,7 +306,7 @@
                   <div class="activity-content">
                    Newly Registered
                   </div>
-                </div><!-- End activity item-->
+                </div>
 
                 <div class="activity-item d-flex">
                   <div class="activite-label">56 min</div>
@@ -314,7 +314,7 @@
                   <div class="activity-content">
                     Retirement
                   </div>
-                </div><!-- End activity item-->
+                </div>
 
                 <div class="activity-item d-flex">
                   <div class="activite-label">2 hrs</div>
@@ -322,7 +322,7 @@
                   <div class="activity-content">
                     Renewal
                   </div>
-                </div><!-- End activity item-->
+                </div>
 
                 <div class="activity-item d-flex">
                   <div class="activite-label">1 day</div>
@@ -330,7 +330,7 @@
                   <div class="activity-content">
                    pending
                   </div>
-                </div><!-- End activity item-->
+                </div>
 
                 <div class="activity-item d-flex">
                   <div class="activite-label">2 days</div>
@@ -338,7 +338,7 @@
                   <div class="activity-content">
                    Payments status
                   </div>
-                </div><!-- End activity item-->
+                </div>
 
                 <div class="activity-item d-flex">
                   <div class="activite-label">4 weeks</div>
@@ -346,12 +346,12 @@
                   <div class="activity-content">
                     Applicants
                   </div>
-                </div><!-- End activity item-->
+                </div>
 
               </div>
 
             </div>
-          </div><!-- End Recent Activity -->
+          </div> -->
 
           <!-- Budget Report -->
           <div class="card">

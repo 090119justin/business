@@ -401,9 +401,16 @@
                     <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
                     <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="3" aria-label="Slide 4"></button>
                     <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="4" aria-label="Slide 5"></button>
+                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="5" aria-label="Slide 6"></button>
                   </div>
                   <div class="carousel-inner">
                     <div class="carousel-item active">
+                      <img src="assets/img/slides-3.jpg" class="d-block w-100" alt="...">
+                      <div class="carousel-caption d-none d-md-block">
+                        
+                      </div>
+                    </div>
+                    <div class="carousel-item">
                       <img src="assets/img/slides-1.jpg" class="d-block w-100" alt="...">
                       <div class="carousel-caption d-none d-md-block">
                         
@@ -416,12 +423,6 @@
                       </div>
                     </div>
                     <div class="carousel-item">
-                      <img src="assets/img/slides-3.jpg" class="d-block w-100" alt="...">
-                      <div class="carousel-caption d-none d-md-block">
-                        
-                      </div>
-                    </div>
-                    <div class="carousel-item">
                       <img src="assets/img/slides-4.jpg" class="d-block w-100" alt="...">
                       <div class="carousel-caption d-none d-md-block">
                         
@@ -429,6 +430,12 @@
                     </div>
                     <div class="carousel-item">
                       <img src="assets/img/slides-5.jpg" class="d-block w-100" alt="...">
+                      <div class="carousel-caption d-none d-md-block">
+                        
+                      </div>
+                    </div>
+                    <div class="carousel-item">
+                      <img src="assets/img/slides-6.jpg" class="d-block w-100" alt="...">
                       <div class="carousel-caption d-none d-md-block">
                         
                       </div>
@@ -495,7 +502,7 @@
             </div>
 
             <div class="card-body">
-              <h5 class="card-title"><p>Registerd Businesses</p> <span>| This Month</span></h5>
+              <h5 class="card-title"><p>Registered Businesses</p> <span>| This Month</span></h5>
 
               <div class="d-flex align-items-center">
                 <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
@@ -856,9 +863,16 @@
                     <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
                     <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="3" aria-label="Slide 4"></button>
                     <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="4" aria-label="Slide 5"></button>
+                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="5" aria-label="Slide 6"></button>
                   </div>
                   <div class="carousel-inner">
                     <div class="carousel-item active">
+                      <img src="assets/img/slides-3.jpg" class="d-block w-100" alt="...">
+                      <div class="carousel-caption d-none d-md-block">
+                        
+                      </div>
+                    </div>
+                    <div class="carousel-item">
                       <img src="assets/img/slides-1.jpg" class="d-block w-100" alt="...">
                       <div class="carousel-caption d-none d-md-block">
                         
@@ -871,12 +885,6 @@
                       </div>
                     </div>
                     <div class="carousel-item">
-                      <img src="assets/img/slides-3.jpg" class="d-block w-100" alt="...">
-                      <div class="carousel-caption d-none d-md-block">
-                        
-                      </div>
-                    </div>
-                    <div class="carousel-item">
                       <img src="assets/img/slides-4.jpg" class="d-block w-100" alt="...">
                       <div class="carousel-caption d-none d-md-block">
                         
@@ -884,6 +892,12 @@
                     </div>
                     <div class="carousel-item">
                       <img src="assets/img/slides-5.jpg" class="d-block w-100" alt="...">
+                      <div class="carousel-caption d-none d-md-block">
+                        
+                      </div>
+                    </div>
+                    <div class="carousel-item">
+                      <img src="assets/img/slides-6.jpg" class="d-block w-100" alt="...">
                       <div class="carousel-caption d-none d-md-block">
                         
                       </div>
@@ -953,7 +967,7 @@
             </div>
 
             <div class="card-body">
-              <h5 class="card-title"><p>Registerd Businesses</p> <span>| This Month</span></h5>
+              <h5 class="card-title"><p>Registered Businesses</p> <span>| This Month</span></h5>
 
               <div class="d-flex align-items-center">
                 <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">

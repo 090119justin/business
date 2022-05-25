@@ -462,91 +462,81 @@
                         </div>
                       </div>
                     </div>
-
+                  </form>
+                  <form>
+                    
                     <div class="row mb-3">
-                      <label for="fullName" class="col-md-4 col-lg-3 col-form-label">Full Name</label>
+                      <label for="yourName" class="col-md-4 col-lg-3 col-form-label">First Name</label>
                       <div class="col-md-8 col-lg-9">
-                        <input name="fullName" type="text" class="form-control" id="fullName" value="Kevin Anderson">
+                        <input type="text" value="<?php echo $_SESSION['firstName']; ?>" name="firstName" class="form-control" id="yourName" required>
+                        <div class="invalid-feedback">Please, enter your first name!</div>
                       </div>
                     </div>
 
                     <div class="row mb-3">
-                      <label for="about" class="col-md-4 col-lg-3 col-form-label">About</label>
+                      <label for="yourName" class="col-md-4 col-lg-3 col-form-label">Middle Name</label>
                       <div class="col-md-8 col-lg-9">
-                        <textarea name="about" class="form-control" id="about" style="height: 100px">Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Tempora libero non est unde veniam est qui dolor. Ut sunt iure rerum quae quisquam autem eveniet perspiciatis odit. Fuga sequi sed ea saepe at unde.</textarea>
+                        <input type="text" value="<?php echo $_SESSION['middleName']; ?>" name="middleName" class="form-control" id="yourName" required>
+                        <div class="invalid-feedback">Please, enter your middle name!</div>
                       </div>
                     </div>
 
                     <div class="row mb-3">
-                      <label for="company" class="col-md-4 col-lg-3 col-form-label">Company</label>
+                      <label for="yourName" class="col-md-4 col-lg-3 col-form-label">Last Name</label>
                       <div class="col-md-8 col-lg-9">
-                        <input name="company" type="text" class="form-control" id="company" value="Lueilwitz, Wisoky and Leuschke">
+                        <input type="text" value="<?php echo $_SESSION['lastName']; ?>" name="lastName" class="form-control" id="yourName" required>
+                        <div class="invalid-feedback">Please, enter your last name!</div>
                       </div>
                     </div>
 
                     <div class="row mb-3">
-                      <label for="Job" class="col-md-4 col-lg-3 col-form-label">Job</label>
+                      <label for="yourName" class="col-md-4 col-lg-3 col-form-label">Birth date</label>
                       <div class="col-md-8 col-lg-9">
-                        <input name="job" type="text" class="form-control" id="Job" value="Web Designer">
+                        <input type="date" value="<?php echo $_SESSION['birthDate']; ?>" name="birthDay" class="form-control" id="yourName" required>
+                        <div class="invalid-feedback">Please, enter your birth day!</div>
                       </div>
                     </div>
 
                     <div class="row mb-3">
-                      <label for="Country" class="col-md-4 col-lg-3 col-form-label">Country</label>
+                      <label for="yourName" class="col-md-4 col-lg-3 col-form-label">Age</label>
                       <div class="col-md-8 col-lg-9">
-                        <input name="country" type="text" class="form-control" id="Country" value="USA">
+                        <input type="text" value="<?php echo $_SESSION['age']; ?>" name="firstName" class="form-control" id="yourName" required>
+                        <div class="invalid-feedback">Please, enter your age!</div>
                       </div>
                     </div>
 
                     <div class="row mb-3">
-                      <label for="Address" class="col-md-4 col-lg-3 col-form-label">Address</label>
+                      <label for="yourName" class="col-md-4 col-lg-3 col-form-label">Gender</label>
                       <div class="col-md-8 col-lg-9">
-                        <input name="address" type="text" class="form-control" id="Address" value="A108 Adam Street, New York, NY 535022">
+                          <select class="form-select" name="gender" aria-label="Default select example" required>
+                            <option value="">Select gender..</option>
+                            <option value="Male" <?php if ($_SESSION['gender'] == "Male") { echo ' selected="selected"'; } ?>>Male</option>
+                            <option value="Female" <?php if ($_SESSION['gender'] == "Female") { echo ' selected="selected"'; } ?>>Female</option>
+                            <option value="Others" <?php if ($_SESSION['gender'] == "Others") { echo ' selected="selected"'; } ?>>Others</option>
+                          </select>
+                        <div class="invalid-feedback">Please, enter your gender!</div>
                       </div>
                     </div>
 
                     <div class="row mb-3">
-                      <label for="Phone" class="col-md-4 col-lg-3 col-form-label">Phone</label>
+                      <label for="yourName" class="col-md-4 col-lg-3 col-form-label">Contact No</label>
                       <div class="col-md-8 col-lg-9">
-                        <input name="phone" type="text" class="form-control" id="Phone" value="(436) 486-3538 x29071">
+                        <input type="text" value="<?php echo $_SESSION['contactNo']; ?>" name="contactNo" class="form-control" id="yourName" required>
+                        <div class="invalid-feedback">Please, enter your Contact Number!</div>
                       </div>
                     </div>
-
+                    
                     <div class="row mb-3">
-                      <label for="Email" class="col-md-4 col-lg-3 col-form-label">Email</label>
+                      <label for="yourName" class="col-md-4 col-lg-3 col-form-label">Email</label>
                       <div class="col-md-8 col-lg-9">
-                        <input name="email" type="email" class="form-control" id="Email" value="k.anderson@example.com">
+                        <input type="email" value="<?php echo $_SESSION['email']; ?>" name="email" class="form-control" id="yourEmail" required>
+                        <div class="invalid-feedback">Please enter a valid Email adddress!</div>
                       </div>
                     </div>
 
-                    <div class="row mb-3">
-                      <label for="Twitter" class="col-md-4 col-lg-3 col-form-label">Twitter Profile</label>
-                      <div class="col-md-8 col-lg-9">
-                        <input name="twitter" type="text" class="form-control" id="Twitter" value="https://twitter.com/#">
-                      </div>
-                    </div>
+                    
 
-                    <div class="row mb-3">
-                      <label for="Facebook" class="col-md-4 col-lg-3 col-form-label">Facebook Profile</label>
-                      <div class="col-md-8 col-lg-9">
-                        <input name="facebook" type="text" class="form-control" id="Facebook" value="https://facebook.com/#">
-                      </div>
-                    </div>
-
-                    <div class="row mb-3">
-                      <label for="Instagram" class="col-md-4 col-lg-3 col-form-label">Instagram Profile</label>
-                      <div class="col-md-8 col-lg-9">
-                        <input name="instagram" type="text" class="form-control" id="Instagram" value="https://instagram.com/#">
-                      </div>
-                    </div>
-
-                    <div class="row mb-3">
-                      <label for="Linkedin" class="col-md-4 col-lg-3 col-form-label">Linkedin Profile</label>
-                      <div class="col-md-8 col-lg-9">
-                        <input name="linkedin" type="text" class="form-control" id="Linkedin" value="https://linkedin.com/#">
-                      </div>
-                    </div>
-
+                   
                     <div class="text-center">
                       <button type="submit" name="save" value="upload" class="btn btn-primary">Save Changes</button>
                     </div>

@@ -186,4 +186,4 @@
 
   </main><!-- End #main -->
 
-<?php include "../includes/staff-header.php"; ?>
+<?php include "../includes/staff-footer.php"; ?>
